@@ -6,13 +6,157 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+    <ImageView
+        android:id="@+id/imPapieros"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/imKasa"
+        app:layout_constraintEnd_toStartOf="@+id/txNiePaliszOd"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/cigarette_1f6ac" />
+
+    <ImageView
+        android:id="@+id/imKasa"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/imWoozyFace"
+        app:layout_constraintEnd_toStartOf="@+id/txZaoszczedzilesX"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imPapieros"
+        app:srcCompat="@drawable/money_with_wings_1f4b8" />
+
+    <ImageView
+        android:id="@+id/imWoozyFace"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/imMoneyFace"
+        app:layout_constraintEnd_toStartOf="@+id/btOchota"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imKasa"
+        app:srcCompat="@drawable/woozy_face_1f974" />
+
+    <ImageView
+        android:id="@+id/imMoneyFace"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/imTrofeum"
+        app:layout_constraintEnd_toStartOf="@+id/btOszczedzaj"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imWoozyFace"
+        app:srcCompat="@drawable/money_mouth_face_1f911" />
+
+    <ImageView
+        android:id="@+id/imTrofeum"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/imJoga"
+        app:layout_constraintEnd_toStartOf="@+id/btOsiagniecia"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imMoneyFace"
+        app:srcCompat="@drawable/trophy_1f3c6" />
+
+    <ImageView
+        android:id="@+id/imJoga"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        app:layout_constraintBottom_toTopOf="@+id/imSmutnaBuzka"
+        app:layout_constraintEnd_toStartOf="@+id/btZdrowie"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imTrofeum"
+        app:srcCompat="@drawable/person_in_lotus_position_1f9d8" />
+
+    <ImageView
+        android:id="@+id/imSmutnaBuzka"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/btZerowanie"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imJoga"
+        app:srcCompat="@drawable/pensive_face_1f614" />
+
+    <TextView
+        android:id="@+id/txNiePaliszOd"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Nie palisz od x dni"
+        app:layout_constraintBottom_toTopOf="@+id/txZaoszczedzilesX"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imPapieros"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/txZaoszczedzilesX"
+        android:layout_width="150dp"
+        android:layout_height="40dp"
+        android:text="Zaoszczedziles X PLN"
+        app:layout_constraintBottom_toTopOf="@+id/btOchota"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imKasa"
+        app:layout_constraintTop_toBottomOf="@+id/txNiePaliszOd" />
+
+    <Button
+        android:id="@+id/btOchota"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="Ochota na papierosa?"
+        app:layout_constraintBottom_toTopOf="@+id/btOszczedzaj"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imWoozyFace"
+        app:layout_constraintTop_toBottomOf="@+id/txZaoszczedzilesX" />
+
+    <Button
+        android:id="@+id/btOszczedzaj"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="Zacznij oszczędzać!"
+        app:layout_constraintBottom_toTopOf="@+id/btOsiagniecia"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imMoneyFace"
+        app:layout_constraintTop_toBottomOf="@+id/btOchota" />
+
+    <Button
+        android:id="@+id/btOsiagniecia"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="Twoje osiągnięcia"
+        app:layout_constraintBottom_toTopOf="@+id/btZdrowie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imTrofeum"
+        app:layout_constraintTop_toBottomOf="@+id/btOszczedzaj" />
+
+    <Button
+        android:id="@+id/btZdrowie"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="Twoje zdrowie"
+        app:layout_constraintBottom_toTopOf="@+id/btZerowanie"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imJoga"
+        app:layout_constraintTop_toBottomOf="@+id/btOsiagniecia" />
+
+    <Button
+        android:id="@+id/btZerowanie"
+        android:layout_width="160dp"
+        android:layout_height="50dp"
+        android:text="A jednak zapaliłeś...?"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintStart_toEndOf="@+id/imSmutnaBuzka"
+        app:layout_constraintTop_toBottomOf="@+id/btZdrowie" />
 </androidx.constraintlayout.widget.ConstraintLayout>
