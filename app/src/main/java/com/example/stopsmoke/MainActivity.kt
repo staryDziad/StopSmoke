@@ -9,6 +9,8 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
+    private var jeden : TextView? = null
+
     private var ileNiePalisz: TextView? = null
     private var ileZaoszczedziles: TextView? = null
 
