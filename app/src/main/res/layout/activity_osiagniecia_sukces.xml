@@ -4,36 +4,37 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Osiagniecia">
+    tools:context=".OsiagnieciaSukces">
 
-    <Button
-        android:id="@+id/btRok"
+    <TextView
+        android:id="@+id/txIleNiePalisz"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rok"
+        android:text="Gratulacje! Nie palisz już X."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btTydzien"
+        android:id="@+id/btWrocOsiagnieciaSukces"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tydzień"
-        app:layout_constraintBottom_toTopOf="@+id/btRok"
+        android:text="Wróć"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txIleNiePalisz"
+        app:layout_constraintVertical_bias="0.717" />
+
+    <ImageView
+        android:id="@+id/imDrogaDoCelu1"
+        android:layout_width="293dp"
+        android:layout_height="283dp"
+        app:layout_constraintBottom_toTopOf="@+id/txIleNiePalisz"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" />
-
-    <Button
-        android:id="@+id/btDzien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="Dzień"
-        app:layout_constraintBottom_toTopOf="@+id/btTydzien"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:srcCompat="@drawable/droga" />
 </androidx.constraintlayout.widget.ConstraintLayout>

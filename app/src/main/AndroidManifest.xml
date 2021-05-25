@@ -9,7 +9,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StopSmoke">
-        <activity android:name=".OszczedzajCele"></activity>
+        <activity android:name=".OsiagnieciaPorazka"></activity>
+        <activity android:name=".OsiagnieciaSukces" />
+        <activity android:name=".ZdrowieDodajWynik" />
+        <activity android:name=".OszczedzajCele" />
         <activity android:name=".Zerowanie" />
         <activity android:name=".Zdrowie" />
         <activity android:name=".Oszczedzaj" />

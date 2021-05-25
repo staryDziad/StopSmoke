@@ -8,28 +8,33 @@
 
     <Button
         android:id="@+id/btBardzo"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="66dp"
         android:text="Bardzo"
         app:layout_constraintBottom_toTopOf="@+id/btStrasznie"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_editor_absoluteX="155dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btStrasznie"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="66dp"
         android:text="Strasznie"
         app:layout_constraintBottom_toTopOf="@+id/btTak"
-        app:layout_constraintTop_toBottomOf="@+id/btBardzo"
-        tools:layout_editor_absoluteX="159dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btBardzo" />
 
     <Button
         android:id="@+id/btTak"
-        android:layout_width="100dp"
-        android:layout_height="50dp"
+        android:layout_width="120dp"
+        android:layout_height="66dp"
         android:text="TAK!"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btStrasznie"
-        tools:layout_editor_absoluteX="159dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btStrasznie" />
 </androidx.constraintlayout.widget.ConstraintLayout>

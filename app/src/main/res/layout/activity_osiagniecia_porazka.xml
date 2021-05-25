@@ -4,36 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".Osiagniecia">
+    tools:context=".OsiagnieciaPorazka">
 
-    <Button
-        android:id="@+id/btRok"
+    <TextView
+        android:id="@+id/txIleDoSukcesu"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Rok"
+        android:text="Do sukcesu pozostalo X."
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/btTydzien"
+        android:id="@+id/btWrocOsiagnieciaPorazka"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Tydzień"
-        app:layout_constraintBottom_toTopOf="@+id/btRok"
+        android:text="Wróć"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txIleDoSukcesu"
+        app:layout_constraintVertical_bias="0.74" />
+
+    <ImageView
+        android:id="@+id/imDrogaDoCelu2"
+        android:layout_width="293dp"
+        android:layout_height="283dp"
+        app:layout_constraintBottom_toTopOf="@+id/txIleDoSukcesu"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.496"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" />
-
-    <Button
-        android:id="@+id/btDzien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="Dzień"
-        app:layout_constraintBottom_toTopOf="@+id/btTydzien"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:srcCompat="@drawable/droga" />
 </androidx.constraintlayout.widget.ConstraintLayout>
