@@ -1,40 +1,43 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Ochota_na_papierosa">
 
-    <Button
-        android:id="@+id/btBardzo"
-        android:layout_width="120dp"
-        android:layout_height="66dp"
-        android:text="Bardzo"
-        app:layout_constraintBottom_toTopOf="@+id/btStrasznie"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btStrasznie"
-        android:layout_width="120dp"
-        android:layout_height="66dp"
-        android:text="Strasznie"
-        app:layout_constraintBottom_toTopOf="@+id/btTak"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btBardzo" />
+    <pl.droidsonroids.gif.GifImageButton
+        android:id="@+id/btGif1"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
 
-    <Button
-        android:id="@+id/btTak"
-        android:layout_width="120dp"
-        android:layout_height="66dp"
-        android:text="TAK!"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/btStrasznie" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="28dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/gif4" />
+
+    <pl.droidsonroids.gif.GifImageButton
+        android:id="@+id/btGif2"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/gif2" />
+
+    <pl.droidsonroids.gif.GifImageButton
+        android:id="@+id/btGif3"
+        android:layout_width="wrap_content"
+        android:layout_height="200dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="500dp"
+
+
+        android:src="@drawable/gif3" />
+</RelativeLayout>

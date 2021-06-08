@@ -8,7 +8,7 @@ import android.widget.Button
 import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
-    private var cokolwiek: Button? = null //wrzucam cos zeby moc dodac znowu
+
 
     private var ileNiePalisz: TextView? = null
     private var ileZaoszczedziles: TextView? = null

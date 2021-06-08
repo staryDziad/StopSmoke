@@ -1,20 +1,47 @@
 package com.example.stopsmoke
 
+import android.app.Dialog
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Button
+import pl.droidsonroids.gif.GifImageButton
 
 class Ochota_na_papierosa : AppCompatActivity() {
 
-    private var btBardzo : Button? = null
-    private var btStrasznie : Button? = null
-    private var btTak : Button? = null
+    private var btGif1 : GifImageButton? = null
+    private var btGif2 : GifImageButton? = null
+    private var btGif3 : GifImageButton? = null
+    private var mDialog : Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_ochota_na_papierosa)
-        btBardzo = findViewById(R.id.btBardzo)
-        btStrasznie = findViewById(R.id.btStrasznie)
-        btTak = findViewById(R.id.btTak)
+        btGif1 = findViewById(R.id.btGif1)
+        btGif2 = findViewById(R.id.btGif2)
+        btGif3 = findViewById(R.id.btGif3)
+        mDialog = Dialog(this)
+
+
+        btGif1?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.papieros_gif_1)
+                mDialog!!.show()
+            }
+        })
+
+        btGif2?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.papieros_gif_2)
+                mDialog!!.show()
+            }
+        })
+
+        btGif3?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.papieros_gif_3)
+                mDialog!!.show()
+            }
+        })
     }
 }
