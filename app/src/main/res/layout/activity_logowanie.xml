@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".Logowanie">
+
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="198dp"
+        android:layout_height="203dp"
+        app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/zakazpalenia"
+        tools:layout_editor_absoluteX="106dp" />
+
+    <EditText
+        android:id="@+id/editTextEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="E-mail"
+        android:inputType="textEmailAddress"
+        app:layout_constraintBottom_toTopOf="@+id/editTextHaslo"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <EditText
+        android:id="@+id/editTextHaslo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="Hasło"
+        android:inputType="textPassword"
+        app:layout_constraintBottom_toTopOf="@+id/btZaloguj"
+        app:layout_constraintTop_toBottomOf="@+id/editTextEmail"
+        tools:layout_editor_absoluteX="101dp" />
+
+    <TextView
+        android:id="@+id/txKonto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        app:layout_constraintBottom_toTopOf="@+id/btZarejestruj"
+        app:layout_constraintTop_toBottomOf="@+id/btZaloguj"
+        tools:layout_editor_absoluteX="114dp"
+        tools:text="Nie posiadasz jeszcze konta?" />
+
+    <Button
+        android:id="@+id/btZaloguj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zaloguj się"
+        app:layout_constraintBottom_toTopOf="@+id/txKonto"
+        app:layout_constraintTop_toBottomOf="@+id/editTextHaslo"
+        tools:layout_editor_absoluteX="141dp" />
+
+    <Button
+        android:id="@+id/btZarejestruj"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Zarejestruj się"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/txKonto"
+        tools:layout_editor_absoluteX="123dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
