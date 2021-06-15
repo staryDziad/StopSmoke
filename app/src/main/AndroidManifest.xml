@@ -9,9 +9,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StopSmoke">
-        <activity android:name=".DaneDoRejestracji"></activity>
+        <activity android:name=".UserInfoActivity"></activity>
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".BaseActivity" />
+        <activity android:name=".Logowanie" />
+        <activity android:name=".DaneDoRejestracji" />
         <activity android:name=".Rejestracja" />
-        <activity android:name=".MainActivity" />  //tu logowanie
+        <activity android:name=".MainActivity" />
         <activity
             android:name=".OsiagnieciaPorazka"
             android:parentActivityName=".MainActivity" />
@@ -27,7 +31,8 @@
             android:parentActivityName=".MainActivity" />
         <activity android:name=".Osiagniecia" />
         <activity android:name=".Ochota_na_papierosa" />
-        <activity android:name=".Logowanie">   //tu MainActivity
+        <activity android:name=".LoginActivity">   //tu bylo main activity, potem logowanie
+            //tu MainActivity
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
