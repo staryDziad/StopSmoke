@@ -11,7 +11,7 @@
         android:layout_width="305dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Email"
+        android:hint="E-mail"
         android:inputType="textPersonName"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -23,7 +23,7 @@
         android:layout_width="305dp"
         android:layout_height="50dp"
         android:ems="10"
-        android:hint="Password"
+        android:hint="Hasło"
         android:inputType="textPersonName|textPassword"
         app:layout_constraintBottom_toTopOf="@+id/loginButton"
         app:layout_constraintEnd_toEndOf="parent"
@@ -35,7 +35,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="350dp"
-        android:text="Login"
+        android:text="Zaloguj się"
         app:backgroundTint="#03A9F4"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -47,7 +47,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
-        android:text="Login Activity"
+        android:text="Logowanie"
         app:layout_constraintBottom_toTopOf="@+id/inputEmail"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
@@ -60,7 +60,8 @@
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        >
 
         <ImageView
             android:id="@+id/background"
@@ -74,7 +75,7 @@
             android:id="@+id/imageView2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-             />
+            app:srcCompat="@drawable/zakazpalenia" />
     </FrameLayout>
 
     <TextView
@@ -83,7 +84,7 @@
         android:layout_height="40dp"
         android:layout_marginStart="90dp"
         android:layout_marginBottom="150dp"
-        android:text="Don't have an account?"
+        android:text="Nie posiadasz konta?"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -93,7 +94,7 @@
         android:layout_height="40dp"
         android:layout_marginTop="8dp"
         android:onClick="onClick"
-        android:text="Register"
+        android:text="Zarejestruj się"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textView2"
