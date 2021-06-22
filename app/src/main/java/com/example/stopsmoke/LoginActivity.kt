@@ -1,6 +1,7 @@
 package com.example.stopsmoke
 
 
+import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,9 +10,14 @@ import android.util.Log
 import android.view.View
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.ktx.auth
+import com.google.firebase.database.DatabaseReference
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
+import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.ktx.Firebase
 
 class LoginActivity : BaseActivity(), View.OnClickListener {
@@ -19,6 +25,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private var inputEmail: EditText? = null
     private var inputPassword: EditText? = null
     private var loginButton: Button? = null
+    private lateinit var database : DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -100,15 +107,64 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
+
+    fun getCurrentUserID(): String {
+
+        val currentUser = FirebaseAuth.getInstance().currentUser
+        var currentUserID = ""
+        if (currentUser != null) {
+            currentUserID = currentUser.uid
+        }
+        return currentUserID
+    }
+
+    private val mFireStore = FirebaseFirestore.getInstance()
+
+    fun getUserDetails(activity: Activity): String {
+        var rezultat: String = ""
+        mFireStore.collection(Constant.USERS)
+            .document(getCurrentUserID())
+            .get()
+            .addOnSuccessListener { document ->
+
+                Log.i(activity.javaClass.simpleName, document.toString())
+                val user = document.toObject(User::class.java)!!
+
+                rezultat = user.cenaPaczki.toString()
+            }
+        return rezultat
+    }
+
+//    open fun readData(): String {
+//
+//        var cenaPaczki: String = ""
+//        val user = FirebaseAuth.getInstance().currentUser;
+//        val uid = user?.email.toString()
+//
+//        database = FirebaseDatabase.getInstance().getReference("users")
+//        database.child(uid).get().addOnSuccessListener {
+//            cenaPaczki = it.child("cenaPaczki").value.toString()
+//
+//            val iloscPapierosow = it.child("iloscPapierosow").value.toString()
+//
+//        }
+//        return cenaPaczki
+//    }
+
+
     open fun goToMainActivity() {
 
         val user = FirebaseAuth.getInstance().currentUser;
         val uid = user?.email.toString()
 
         val intent = Intent(this, MainActivity::class.java)
-        intent.putExtra("uID",uid)
+        intent.putExtra("uID", uid)
+        intent.putExtra("cenaPaczki", getUserDetails(this))
         startActivity(intent)
+
+
     }
+
 
     fun userLoggedInSuccess(user: User){
 

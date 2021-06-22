@@ -1,5 +1,6 @@
 package com.example.stopsmoke
 
+import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -9,7 +10,7 @@ import android.widget.TextView
 
 class MainActivity : AppCompatActivity() {
 
-    private var ileNiePalisz: TextView? = null
+    //private var ileNiePalisz: TextView? = null
     private var ileZaoszczedziles: TextView? = null
 
     private var btOchota: Button? = null
@@ -19,10 +20,11 @@ class MainActivity : AppCompatActivity() {
     private var btZerowanie: Button? = null
 
 
+    @SuppressLint("SetTextI18n")
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        ileNiePalisz = findViewById(R.id.txNiePaliszOd)
+        //ileNiePalisz = findViewById(R.id.txNiePaliszOd)
         ileZaoszczedziles = findViewById(R.id.txZaoszczedzilesX)
 
         btOchota = findViewById(R.id.btOchota)
@@ -56,6 +58,12 @@ class MainActivity : AppCompatActivity() {
                 openActivityZdrowie()
             }
         })
+
+        val intent = getIntent()
+        var A = intent.getStringExtra("cenaPaczki")
+
+        val niePaliszOd = findViewById<TextView>(R.id.txNiePaliszOd)
+        niePaliszOd.text = A
 
     }
 

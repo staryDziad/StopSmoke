@@ -87,7 +87,6 @@
         android:id="@+id/txNiePaliszOd"
         android:layout_width="152dp"
         android:layout_height="53dp"
-        android:text="Nie palisz od x dni"
         app:layout_constraintBottom_toTopOf="@+id/txZaoszczedzilesX"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
