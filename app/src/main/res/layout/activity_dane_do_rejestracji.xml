@@ -44,20 +44,6 @@
         tools:layout_editor_absoluteX="42dp"
         tools:layout_editor_absoluteY="280dp" />
 
-    <Button
-        android:id="@+id/btZapis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginTop="586dp"
-        android:layout_marginEnd="105dp"
-        android:layout_marginBottom="97dp"
-        android:text="Zapisz moje dane"
-        tools:layout_editor_absoluteX="127dp"
-        tools:layout_editor_absoluteY="651dp" />
-
     <Switch
         android:id="@+id/switch1"
         android:layout_width="54dp"
@@ -128,5 +114,17 @@
         android:text="System podgrzewania\n tytoniu"
         tools:layout_editor_absoluteX="252dp"
         tools:layout_editor_absoluteY="137dp" />
+
+    <Button
+        android:id="@+id/btZapis"
+        android:layout_width="142dp"
+        android:layout_height="72dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="145dp"
+        android:layout_marginEnd="124dp"
+        android:layout_marginBottom="51dp"
+        android:text="Zapisz dane" />
 
 </RelativeLayout>

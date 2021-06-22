@@ -56,22 +56,22 @@ class DaneDoRejestracji : AppCompatActivity() {
     }
 
     private fun updateLiczbaPapierosow(){
-        val liczba = edLiczbaPapierosow?.text.toString().toLong()
+        val liczba = edLiczbaPapierosow?.text.toString().toInt()
 
         if(liczba != null) {
-            FireStoreClass().updateUserPhoneData(this, liczba)
+            FireStoreClass().updateUserIloscPapierosow(this, liczba)
         }else {
-            FireStoreClass().updateUserPhoneData(this, 0)
+            FireStoreClass().updateUserIloscPapierosow(this, 0)
         }
     }
 
     private fun updateCena(){
-        val cena = edLiczbaPapierosow?.text.toString().toLong()
+        val cena = edLiczbaPapierosow?.text.toString().toDouble()
 
         if(cena != null) {
-            FireStoreClass().updateUserPhoneData(this, cena)
+            FireStoreClass().updateUserCenaPapierosow(this, cena)
         }else {
-            FireStoreClass().updateUserPhoneData(this, 0)
+            FireStoreClass().updateUserCenaPapierosow(this, 0.0)
         }
     }
 

@@ -11,7 +11,7 @@ class FireStoreClass {
 
     private val mFireStore = FirebaseFirestore.getInstance()
 
-    fun registerUser(activity: RegisterActivity, userInfo: User){
+    fun registerUser(activity: RegisterActivity, userInfo: User) {
         //mFireStore.collection("users")
         mFireStore.collection(Constant.USERS)
             .document(userInfo.id)
@@ -34,37 +34,42 @@ class FireStoreClass {
 
         val currentUser = FirebaseAuth.getInstance().currentUser
         var currentUserID = ""
-        if(currentUser != null){
+        if (currentUser != null) {
             currentUserID = currentUser.uid
         }
         return currentUserID
     }
 
-    fun getUserDetails(activity: Activity){
+    fun getUserDetails(activity: Activity) {
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserID())
             .get()
             .addOnSuccessListener { document ->
 
-                Log.i(activity.javaClass.simpleName,document.toString())
+                Log.i(activity.javaClass.simpleName, document.toString())
                 val user = document.toObject(User::class.java)!!
 
-                when(activity){
+                when (activity) {
                     is LoginActivity -> {
                         activity.userLoggedInSuccess(user)
-                    }
-                    is UserInfoActivity -> {
-                        activity.showUserInfo(user)
                     }
                 }
             }
     }
 
-    fun  updateUserPhoneData(activity: Activity, phone: Long){
+
+    fun updateUserIloscPapierosow(activity: Activity, ilosc: Int) {
 
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserID())
-            .update("phoneNumber",phone)
+            .update("iloscPapierosow", ilosc)
+    }
+
+    fun updateUserCenaPapierosow(activity: Activity, cena: Double) {
+
+        mFireStore.collection(Constant.USERS)
+            .document(getCurrentUserID())
+            .update("cenaPaczki", cena)
     }
 
 
