@@ -33,6 +33,8 @@ class MainActivity : AppCompatActivity() {
         btZdrowie = findViewById(R.id.btZdrowie)
         btZerowanie = findViewById(R.id.btZdrowie)
 
+        FireStoreClass().getUserDetails(this)
+
         btOchota?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
                 openActivityOchota()
@@ -64,6 +66,12 @@ class MainActivity : AppCompatActivity() {
 
         val niePaliszOd = findViewById<TextView>(R.id.txNiePaliszOd)
         niePaliszOd.text = A
+
+    }
+
+    fun showUserInfo(user: User){
+        ileZaoszczedziles?.text = user.cenaPaczki.toString()
+
 
     }
 

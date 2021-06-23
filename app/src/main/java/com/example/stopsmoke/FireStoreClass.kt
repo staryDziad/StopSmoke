@@ -53,6 +53,9 @@ class FireStoreClass {
                     is LoginActivity -> {
                         activity.userLoggedInSuccess(user)
                     }
+                    is MainActivity -> {
+                        activity.showUserInfo(user)
+                    }
                 }
             }
     }
