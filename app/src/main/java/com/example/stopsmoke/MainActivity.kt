@@ -61,18 +61,11 @@ class MainActivity : AppCompatActivity() {
             }
         })
 
-        val intent = getIntent()
-        var A = intent.getStringExtra("cenaPaczki")
-
-        val niePaliszOd = findViewById<TextView>(R.id.txNiePaliszOd)
-        niePaliszOd.text = A
-
     }
 
-    fun showUserInfo(user: User){
+    fun showUserInfo(user: User) {
         ileZaoszczedziles?.text = user.cenaPaczki.toString()
-
-
+        var cena = user.cenaPaczki
     }
 
     private fun openActivityOchota(){
