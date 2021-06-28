@@ -99,7 +99,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                         FireStoreClass().getUserDetails(this)
                         showErrorSnackBar("You are logged in successfully.", false)
                         goToMainActivity()
-                        //finish()
+                        finish()
 
                     } else{
                         showErrorSnackBar(task.exception!!.message.toString(),true)

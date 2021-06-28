@@ -8,6 +8,7 @@ import android.widget.Button
 import android.widget.CalendarView
 import android.widget.DatePicker
 import android.widget.EditText
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
 
@@ -30,22 +31,30 @@ class DaneDoRejestracji : AppCompatActivity() {
         edCenaPapierosow = findViewById(R.id.edCenaPapierosow)
         kalendarz = findViewById(R.id.kalendarz)
 
+        var tmpStamp : Timestamp? = null
+
+        val today = Calendar.getInstance()
+        kalendarz?.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+            today.get(Calendar.DAY_OF_MONTH)) { view, year, month, day ->
+
+            val c = Calendar.getInstance()
+            c.set(year, month, day)
+
+            tmpStamp = Timestamp(c.time)
+        }
+
+
         btZapis?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v : View){
                 updateLiczbaPapierosow()
                 updateCena()
+                updateData(tmpStamp!!)
                 //finish()
                 goToLogin()
             }
         })
-        //val today = Calendar.getInstance()
-        //kalendarz.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-        //    today.get(Calendar.DAY_OF_MONTH)
-        //) { view, year, month, day ->
-        //    val month = month + 1
-        //    val msg = "You Selected: $day/$month/$year"
 
-        //}
+
 
 
     }
@@ -53,6 +62,15 @@ class DaneDoRejestracji : AppCompatActivity() {
     private fun openActivityMain(){
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun updateData(timestamp: Timestamp){
+
+        if(timestamp != null) {
+            FireStoreClass().updateData(this, timestamp)
+        }else {
+            FireStoreClass().updateData(this, Timestamp(0, 0))
+        }
     }
 
     private fun updateLiczbaPapierosow(){

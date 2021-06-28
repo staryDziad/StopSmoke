@@ -75,5 +75,19 @@ class FireStoreClass {
             .update("cenaPaczki", cena)
     }
 
+    fun updateData(activity: Activity, data: com.google.firebase.Timestamp) {
+
+        mFireStore.collection(Constant.USERS)
+            .document(getCurrentUserID())
+            .update("dataOstatniego", data)
+    }
+
+    fun updateWykresWagi(activity: Activity, mapa: Map<String, Float>){
+        mFireStore.collection(Constant.USERS)
+            .document(getCurrentUserID())
+            .update("dataOstatniego", mapa)
+    }
+
+
 
 }

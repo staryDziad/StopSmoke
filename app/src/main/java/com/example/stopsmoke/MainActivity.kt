@@ -7,10 +7,12 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
+import com.google.firebase.Timestamp
+import java.time.*
 
 class MainActivity : AppCompatActivity() {
 
-    //private var ileNiePalisz: TextView? = null
+    private var ileNiePalisz: TextView? = null
     private var ileZaoszczedziles: TextView? = null
 
     private var btOchota: Button? = null
@@ -24,7 +26,7 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        //ileNiePalisz = findViewById(R.id.txNiePaliszOd)
+        ileNiePalisz = findViewById(R.id.txNiePaliszOd)
         ileZaoszczedziles = findViewById(R.id.txZaoszczedzilesX)
 
         btOchota = findViewById(R.id.btOchota)
@@ -52,20 +54,26 @@ class MainActivity : AppCompatActivity() {
         })
         btZdrowie?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
-                openActivityZerowanie()
+                openActivityZdrowie()
             }
         })
         btZerowanie?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
-                openActivityZdrowie()
+                openActivityZerowanie()
             }
         })
 
     }
 
     fun showUserInfo(user: User) {
-        ileZaoszczedziles?.text = user.cenaPaczki.toString()
-        var cena = user.cenaPaczki
+        val today = LocalDateTime.now()
+        val ostatniPapieros = user.dataOstatniego.toLocalDateTime()
+        val dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
+        val cenaPaczki = user.cenaPaczki
+        val zaoszczedziles = cenaPaczki*dniBezPalenia.toDouble()
+        ileNiePalisz?.text = "Nie palisz od: " + dniBezPalenia.toString() + "dni"
+        ileZaoszczedziles?.text = "Oszczędzasz: " + zaoszczedziles.toString() + "PLN"
+
     }
 
     private fun openActivityOchota(){
@@ -88,5 +96,7 @@ class MainActivity : AppCompatActivity() {
         val intent = Intent(this, Zerowanie::class.java)
         startActivity(intent)
     }
+    fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
+        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone)
 
 }
