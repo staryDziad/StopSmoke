@@ -1,39 +1,168 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Osiagniecia">
 
-    <Button
-        android:id="@+id/btRok"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Rok"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
 
-    <Button
-        android:id="@+id/btTydzien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Tydzień"
-        app:layout_constraintBottom_toTopOf="@+id/btRok"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.819" />
+    <ImageView
+        android:id="@+id/imBlackPuchar3"
+        android:layout_width="140dp"
+        android:layout_height="170dp"
+        android:layout_alignBottom="@+id/imPodium"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="62dp"
+        android:layout_marginBottom="197dp"
+        app:srcCompat="@drawable/black" />
 
-    <Button
-        android:id="@+id/btDzien"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="52dp"
-        android:text="Dzień"
-        app:layout_constraintBottom_toTopOf="@+id/btTydzien"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <ImageView
+        android:id="@+id/imBlackPuchar2"
+        android:layout_width="140dp"
+        android:layout_height="170dp"
+        android:layout_alignBottom="@+id/imPodium"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="251dp"
+        android:layout_marginBottom="202dp"
+        app:srcCompat="@drawable/black" />
+
+    <ImageView
+        android:id="@+id/imPodium"
+        android:layout_width="402dp"
+        android:layout_height="193dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="3dp"
+        android:layout_marginBottom="159dp"
+        app:srcCompat="@drawable/podium" />
+
+    <ImageView
+        android:id="@+id/imBlackPuchar1"
+        android:layout_width="140dp"
+        android:layout_height="170dp"
+        android:layout_alignBottom="@+id/imPodium"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="242dp"
+        android:layout_marginBottom="211dp"
+        app:srcCompat="@drawable/black" />
+
+    <ImageView
+        android:id="@+id/imPucharRok"
+        android:layout_width="140dp"
+        android:layout_height="170dp"
+        android:visibility="gone"
+        android:layout_alignBottom="@+id/imPodium"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="243dp"
+        android:layout_marginBottom="210dp"
+        app:srcCompat="@drawable/t1" />
+
+    <ImageView
+        android:id="@+id/imPucharPolRoku"
+        android:layout_width="140dp"
+        android:layout_height="170dp"
+        android:visibility="gone"
+        android:layout_alignBottom="@+id/imPodium"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="63dp"
+        android:layout_marginTop="252dp"
+        android:layout_marginEnd="259dp"
+        android:layout_marginBottom="201dp"
+        app:srcCompat="@drawable/t2" />
+
+    <ImageView
+        android:id="@+id/imPucharMiesiac"
+        android:layout_width="140dp"
+        android:layout_height="170dp"
+        android:visibility="gone"
+        android:layout_alignBottom="@+id/imPodium"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="256dp"
+        android:layout_marginEnd="61dp"
+        android:layout_marginBottom="197dp"
+        app:srcCompat="@drawable/t3" />
+
+    <ImageView
+        android:id="@+id/imMedalTydzien"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:visibility="gone"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="11dp"
+        app:srcCompat="@drawable/m3_t" />
+
+    <ImageView
+        android:id="@+id/imMedal3Miesiace"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:visibility="gone"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="132dp"
+        android:layout_marginBottom="12dp"
+        app:srcCompat="@drawable/m2_t" />
+
+    <ImageView
+        android:id="@+id/imMedal9Miesiecy"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:visibility="gone"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="13dp"
+        app:srcCompat="@drawable/m1_t" />
+
+    <ImageView
+        android:id="@+id/imMedalBlack3"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="269dp"
+        android:layout_marginEnd="2dp"
+        android:layout_marginBottom="13dp"
+        app:srcCompat="@drawable/mblack" />
+
+    <ImageView
+        android:id="@+id/imMedalBlack2"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="130dp"
+        android:layout_marginEnd="139dp"
+        android:layout_marginBottom="13dp"
+        app:srcCompat="@drawable/mblack" />
+
+    <ImageView
+        android:id="@+id/imMedalBlack1"
+        android:layout_width="140dp"
+        android:layout_height="160dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="-1dp"
+        android:layout_marginEnd="270dp"
+        android:layout_marginBottom="11dp"
+        app:srcCompat="@drawable/mblack" />
+
+
+</RelativeLayout>

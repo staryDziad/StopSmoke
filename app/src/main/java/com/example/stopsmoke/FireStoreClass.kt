@@ -56,6 +56,9 @@ class FireStoreClass {
                     is MainActivity -> {
                         activity.showUserInfo(user)
                     }
+                    is Osiagniecia -> {
+                        activity.showUserInfo(user)
+                    }
                 }
             }
     }

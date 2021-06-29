@@ -1,43 +1,191 @@
 package com.example.stopsmoke
 
+import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.Button
+import android.widget.ImageButton
+import android.widget.ImageView
+import com.google.firebase.Timestamp
+import java.time.Duration
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 class Osiagniecia : AppCompatActivity() {
 
-    private var btDzien: Button? = null
-    private var btRok: Button? = null
+    private var imBlackPuchar1: ImageView? = null
+    private var imBlackPuchar2: ImageView? = null
+    private var imBlackPuchar3: ImageView? = null
+    private var imPucharMiesiac: ImageView? = null
+    private var imPucharPolRoku: ImageView? = null
+    private var imPucharRok: ImageView? = null
+    private var imMedalBlack1: ImageView? = null
+    private var imMedalBlack2: ImageView? = null
+    private var imMedalBlack3: ImageView? = null
+    private var imMedalTydzien: ImageView? = null
+    private var imMedal3Miesiace: ImageView? = null
+    private var imMedal9Miesiecy: ImageView? = null
+    private var mDialog: Dialog? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_osiagniecia)
 
-        btDzien = findViewById(R.id.btDzien)
+        imBlackPuchar1 = findViewById(R.id.imBlackPuchar1)
+        imBlackPuchar2 = findViewById<ImageView>(R.id.imBlackPuchar2)
+        imBlackPuchar3 = findViewById<ImageView>(R.id.imBlackPuchar3)
+        imPucharMiesiac = findViewById<ImageView>(R.id.imPucharMiesiac)
+        imPucharPolRoku = findViewById<ImageView>(R.id.imPucharPolRoku)
+        imPucharRok = findViewById<ImageView>(R.id.imPucharRok)
+        imMedalBlack1 = findViewById(R.id.imMedalBlack1)
+        imMedalBlack2 = findViewById(R.id.imMedalBlack2)
+        imMedalBlack3 = findViewById(R.id.imMedalBlack3)
+        imMedalTydzien = findViewById(R.id.imMedalTydzien)
+        imMedal3Miesiace = findViewById(R.id.imMedal3Miesiace)
+        imMedal9Miesiecy = findViewById(R.id.imMedal9Miesiecy)
+        mDialog = Dialog(this)
 
-        btDzien?.setOnClickListener(object: View.OnClickListener{
+
+        imBlackPuchar1?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
-                openActivitySukces()
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imBlackPuchar2?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imBlackPuchar3?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
             }
         })
 
-        btRok = findViewById(R.id.btRok)
-
-        btRok?.setOnClickListener(object: View.OnClickListener{
+        imPucharRok?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
-                openActivityPorazka()
+                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+                mDialog!!.show()
             }
         })
-    }
-    private fun openActivitySukces(){
-        val intent = Intent(this, OsiagnieciaSukces::class.java)
-        startActivity(intent)
+        imPucharPolRoku?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imPucharMiesiac?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imMedalBlack1?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imMedalBlack2?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imMedalBlack3?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imMedalTydzien?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imMedal3Miesiace?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imMedal9Miesiecy?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+
+        FireStoreClass().getUserDetails(this)
+
     }
 
-    private fun openActivityPorazka(){
-        val intent = Intent(this, OsiagnieciaPorazka::class.java)
-        startActivity(intent)
+    fun showUserInfo(user: User) {
+        val today = LocalDateTime.now()
+        val ostatniPapieros = user.dataOstatniego.toLocalDateTime()
+        val dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
+
+        if(dniBezPalenia in 8..30){
+            imMedalBlack3?.visibility = GONE
+            imMedalTydzien?.visibility = VISIBLE
+        }else if (dniBezPalenia in 31..90){
+            imMedalBlack3?.visibility = GONE
+            imMedalTydzien?.visibility = VISIBLE
+            imBlackPuchar3?.visibility = GONE
+            imPucharMiesiac?.visibility = VISIBLE
+        }else if(dniBezPalenia in 90..179){
+            imMedalBlack3?.visibility = GONE
+            imMedalTydzien?.visibility = VISIBLE
+            imBlackPuchar3?.visibility = GONE
+            imPucharMiesiac?.visibility = VISIBLE
+            imMedalBlack2?.visibility = GONE
+            imMedal3Miesiace?.visibility = VISIBLE
+        }
+        else if(dniBezPalenia in 180..272){
+            imMedalBlack3?.visibility = GONE
+            imMedalTydzien?.visibility = VISIBLE
+            imBlackPuchar3?.visibility = GONE
+            imPucharMiesiac?.visibility = VISIBLE
+            imMedalBlack2?.visibility = GONE
+            imMedal3Miesiace?.visibility = VISIBLE
+            imBlackPuchar2?.visibility = GONE
+            imPucharPolRoku?.visibility = VISIBLE
+        }
+        else if(dniBezPalenia in 273..363){
+            imMedalBlack3?.visibility = GONE
+            imMedalTydzien?.visibility = VISIBLE
+            imBlackPuchar3?.visibility = GONE
+            imPucharMiesiac?.visibility = VISIBLE
+            imMedalBlack2?.visibility = GONE
+            imMedal3Miesiace?.visibility = VISIBLE
+            imBlackPuchar2?.visibility = GONE
+            imPucharPolRoku?.visibility = VISIBLE
+            imMedalBlack1?.visibility = GONE
+            imMedal9Miesiecy?.visibility = VISIBLE
+        }
+        else if(dniBezPalenia >= 364){
+            imBlackPuchar3?.visibility = GONE
+            imPucharMiesiac?.visibility = VISIBLE
+            imBlackPuchar2?.visibility = GONE
+            imPucharPolRoku?.visibility = VISIBLE
+            imBlackPuchar1?.visibility = GONE
+            imPucharRok?.visibility = VISIBLE
+        }
+
     }
+
+    fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
+        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone)
+
+
 }
