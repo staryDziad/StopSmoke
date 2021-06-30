@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
 import android.widget.Button
+import android.widget.EditText
 import pl.droidsonroids.gif.GifImageButton
 
 class Ochota_na_papierosa : AppCompatActivity() {
@@ -13,6 +14,7 @@ class Ochota_na_papierosa : AppCompatActivity() {
     private var btGif2 : GifImageButton? = null
     private var btGif3 : GifImageButton? = null
     private var mDialog : Dialog? = null
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -23,10 +25,12 @@ class Ochota_na_papierosa : AppCompatActivity() {
         mDialog = Dialog(this)
 
 
+
         btGif1?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
                 mDialog!!.setContentView(R.layout.papieros_gif_1)
                 mDialog!!.show()
+
             }
         })
 
@@ -34,6 +38,7 @@ class Ochota_na_papierosa : AppCompatActivity() {
             override fun onClick(v: View){
                 mDialog!!.setContentView(R.layout.papieros_gif_2)
                 mDialog!!.show()
+
             }
         })
 

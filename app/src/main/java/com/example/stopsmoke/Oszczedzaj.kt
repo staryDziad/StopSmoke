@@ -1,12 +1,13 @@
 package com.example.stopsmoke
 
+import android.app.Dialog
+import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.ProgressBar
-import android.widget.TextView
+import android.widget.*
 import com.google.firebase.Timestamp
 import com.google.protobuf.Empty
 import java.time.Duration
@@ -19,15 +20,44 @@ class Oszczedzaj : AppCompatActivity() {
     private var btCele: Button? = null
     private var txCel1: TextView? = null
     private var progr = 0
+    private var mDialog : Dialog? = null
+    private var btProba: Button? = null
+    private var cel1_popup: EditText? = null
+    private var cena1_popup: EditText? = null
+    private var btOk: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oszczedzaj)
         btCele = findViewById(R.id.btCele)
         txCel1 = findViewById(R.id.txCel1)
+        mDialog = Dialog(this)
+        btProba = findViewById(R.id.btProba)
+        cel1_popup = findViewById(R.id.cel1_popup)
+        cena1_popup = findViewById(R.id.cena1_popup)
+        btOk = findViewById(R.id.btOk)
+
 
 
         FireStoreClass().getUserDetails(this)
+
+        btProba?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                mDialog!!.setContentView(R.layout.popup_cel1)
+                mDialog!!.show()
+                var price = cena1_popup
+                var goal = cel1_popup
+                btOk?.setOnClickListener(object: View.OnClickListener{
+                    override fun onClick(v: View){
+                        //mDialog!!.setContentView(R.layout.popup_cel1)
+                        mDialog!!.dismiss()
+                    }
+                })
+
+            }
+        })
+
+
 
         btCele?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
