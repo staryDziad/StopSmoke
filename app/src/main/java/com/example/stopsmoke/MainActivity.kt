@@ -33,7 +33,7 @@ class MainActivity : AppCompatActivity() {
         btOszczedzaj = findViewById(R.id.btOszczedzaj)
         btOsiagniecia = findViewById(R.id.btOsiagniecia)
         btZdrowie = findViewById(R.id.btZdrowie)
-        btZerowanie = findViewById(R.id.btZdrowie)
+        btZerowanie = findViewById(R.id.btZerowanie)
 
         FireStoreClass().getUserDetails(this)
 

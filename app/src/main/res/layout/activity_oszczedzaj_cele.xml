@@ -10,10 +10,177 @@
         android:id="@+id/btAkceptujCele"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="38dp"
+        android:layout_marginEnd="14dp"
         android:text="Akceptuj"
+        app:layout_constraintEnd_toStartOf="@+id/cena4"
+        app:layout_constraintTop_toBottomOf="@+id/cena4" />
+
+    <EditText
+        android:id="@+id/cel3"
+        android:layout_width="0dp"
+        android:layout_height="68dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginTop="114dp"
+        android:layout_marginEnd="13dp"
+        android:layout_marginBottom="116dp"
+        android:ems="10"
+        android:hint="Podaj cel 3"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/cena4"
+        app:layout_constraintEnd_toStartOf="@+id/cena3"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/cena2" />
+
+    <EditText
+        android:id="@+id/cena2"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="23dp"
+        android:layout_marginBottom="39dp"
+        android:ems="10"
+        android:hint="cena"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/cena3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cel2"
+        app:layout_constraintTop_toBottomOf="@+id/cena1" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="29dp"
+        android:text="Cel 2"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cel2"
+        app:layout_constraintEnd_toStartOf="@+id/cel2"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/cel1"
+        android:layout_width="0dp"
+        android:layout_height="96dp"
+        android:layout_marginEnd="35dp"
+        android:ems="10"
+        android:hint="Podaj cel 1"
+        android:inputType="textPersonName"
+        app:layout_constraintBaseline_toBaselineOf="@+id/textView6"
+        app:layout_constraintEnd_toStartOf="@+id/cena1"
+        app:layout_constraintStart_toEndOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="89dp"
+        android:layout_marginEnd="33dp"
+        android:text="Cel 1"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/cel1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <EditText
+        android:id="@+id/cel2"
+        android:layout_width="0dp"
+        android:layout_height="73dp"
+        android:layout_marginTop="136dp"
+        android:layout_marginEnd="36dp"
+        android:layout_marginBottom="136dp"
+        android:ems="10"
+        android:hint="Podaj cel 2"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toTopOf="@+id/cena4"
+        app:layout_constraintEnd_toStartOf="@+id/cena2"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toTopOf="@+id/cena1" />
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="18dp"
+        android:text="Cel 4"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cel4"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/cena3"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="36dp"
+        android:ems="10"
+        android:hint="cena"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/cena4"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cel3"
+        app:layout_constraintTop_toBottomOf="@+id/cena2" />
+
+    <EditText
+        android:id="@+id/cena4"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="243dp"
+        android:ems="10"
+        android:hint="cena"
+        android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cel4"
+        app:layout_constraintTop_toBottomOf="@+id/cena3" />
+
+    <EditText
+        android:id="@+id/cena1"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="63dp"
+        android:layout_marginEnd="19dp"
+        android:layout_marginBottom="29dp"
+        android:ems="10"
+        android:hint="cena"
+        android:inputType="numberDecimal"
+        app:layout_constraintBottom_toTopOf="@+id/cena2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/cel1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginBottom="9dp"
+        android:text="Cel 3"
+        android:textSize="30dp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/cel3"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <EditText
+        android:id="@+id/cel4"
+        android:layout_width="0dp"
+        android:layout_height="80dp"
+        android:layout_marginStart="115dp"
+        android:layout_marginTop="96dp"
+        android:layout_marginEnd="32dp"
+        android:layout_marginBottom="94dp"
+        android:ems="10"
+        android:hint="Podaj cel 4"
+        android:inputType="textPersonName"
+        app:layout_constraintBottom_toBottomOf="@+id/btAkceptujCele"
+        app:layout_constraintEnd_toStartOf="@+id/cena4"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.77" />
+        app:layout_constraintTop_toTopOf="@+id/cel3" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>
