@@ -3,114 +3,135 @@ package com.example.stopsmoke
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.view.View.GONE
-import android.view.View.VISIBLE
 import android.widget.*
-import kotlin.math.pow
+import androidx.appcompat.app.AlertDialog
+import com.google.firebase.Timestamp
+import java.time.Duration
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 
 class Zdrowie : AppCompatActivity() {
 
     private var btDodajWynik: Button? = null
+    private var edNikotyna: TextView? = null
+    private var edCzas: TextView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zdrowie)
         btDodajWynik = findViewById(R.id.btDodajWynik)
-
-        val waga = findViewById<EditText>(R.id.edWaga)
-        val wzrost = findViewById<EditText>(R.id.edWzrost)
         val btBMI = findViewById<ImageButton>(R.id.btBMI)
-        val bmi = findViewById<TextView>(R.id.txBMI)
-        val bmiStatus = findViewById<TextView>(R.id.txBmiStatus)
-        val bmiAgain = findViewById<TextView>(R.id.btBMIAgain)
-        val textWaga = findViewById<TextView>(R.id.textWaga)
-        val textWzrost = findViewById<TextView>(R.id.textWzost)
-        val prawidlowaMasa = findViewById<TextView>(R.id.txPrawidlowaMasa)
-        val roznica = findViewById<TextView>(R.id.txRoznica)
+        edNikotyna = findViewById(R.id.edNikotyna)
+        edCzas = findViewById(R.id.edZyskanyCzas)
 
-        btBMI.setOnClickListener {
-            var wartoscWagi = 0.0
-            var wartoscWzrostu = 0.0
+        FireStoreClass().getUserDetails(this@Zdrowie)
 
-            if (waga.text.toString().isNotEmpty()) {
-                wartoscWagi = waga.text.toString().toDouble()
-            }
-            if (wzrost.text.toString().isNotEmpty()) {
-                wartoscWzrostu = wzrost.text.toString().toDouble()
-            }
 
-            if (wartoscWagi > 0.0 && wartoscWzrostu > 0.0) {
-                val potega = wartoscWzrostu * wartoscWzrostu
-                val wskaznik = wartoscWagi / potega
-                val wartoscBMI = String.format("%.2f", wskaznik)
 
-                val dopuszczalnaMasaGorna =
-                    25.0 * wartoscWzrostu * wartoscWzrostu
-                val wartoscDopuszczalnaMasaGorna = String.format("%.2f", dopuszczalnaMasaGorna)
-                val dopuszczalnaMasaDolna =
-                    18.5 * wartoscWzrostu * wartoscWzrostu
-                val wartoscDopuszczalnaMasaDolna = String.format("%.2f", dopuszczalnaMasaDolna)
-                val komunikatDopuszczalnaMasa =
-                    "Twoja masa ciała powinna być w zakresie: $wartoscDopuszczalnaMasaDolna - $wartoscDopuszczalnaMasaGorna [kg]"
 
-                var komunikatRoznica = ""
-                if (wskaznik < 18.5) {
-                    var masaPrawidlowa =
-                        18.5 * wartoscWzrostu * wartoscWzrostu // dla dolnej granicy normy
-                    var r = masaPrawidlowa - wartoscWagi
-                    var rW = String.format("%.2f", r)
-                    komunikatRoznica = "Do normy musisz przybrać na wadze: $rW [kg]"
-                } else if (wskaznik > 25.0) {
-                    var masaPrawidlowa =
-                        25.0 * wartoscWzrostu * wartoscWzrostu // dla górnej granicy normy
-                    var r = wartoscWagi - masaPrawidlowa
-                    var rW = String.format("%.2f", r)
-                    komunikatRoznica = "Do normy musisz zrzucić: $rW [kg]"
-                } else {
-                    komunikatRoznica = "Tak trzymaj!"
+        btBMI?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                val mDialogView = LayoutInflater.from(this@Zdrowie).inflate(R.layout.bmi_popup, null)
+                val mBuilder = AlertDialog.Builder(this@Zdrowie)
+                    .setView(mDialogView)
+                    .setTitle("BMI")
+
+                val mAlertDialog = mBuilder.show()
+                val btLicz = mDialogView.findViewById<Button>(R.id.btCalcBMI)
+                val btWyjdz = mDialogView.findViewById<Button>(R.id.btWyjdz)
+                val waga = mDialogView.findViewById<EditText>(R.id.edNr1)
+                val wzrost = mDialogView.findViewById<EditText>(R.id.edNr2)
+                val txCokolwiek = mDialogView.findViewById<TextView>(R.id.txCokolwiek)
+
+
+
+                btLicz.setOnClickListener{
+
+                    var wartoscWagi = 0.0
+                    var wartoscWzrostu = 0.0
+
+                    if (waga.text.toString().isNotEmpty()) {
+                        wartoscWagi = waga.text.toString().toDouble()
+                    }
+                    if (wzrost.text.toString().isNotEmpty()) {
+                        wartoscWzrostu = wzrost.text.toString().toDouble()
+                    }
+
+                    if (wartoscWagi > 0.0 && wartoscWzrostu > 0.0){
+                        val n1 = waga.text.toString().toDouble()
+                        val n2 = wzrost.text.toString().toDouble()
+                        val wskaznikBMI = obliczBMI(n1, n2)
+                        val bmiString = String.format("%.2f", wskaznikBMI)
+                        val dopWaga = dopuszczalnaWaga(n2)
+                        val status = bmiStatusWartosc(wskaznikBMI)
+                        val roznica = roznica(wskaznikBMI, n1, n2)
+                        txCokolwiek?.setText("$bmiString \n $status \n $dopWaga \n $roznica ")
+                    } else{
+                        tost()
+                    }
+
                 }
 
-                bmi.text = wartoscBMI
-                bmiStatus.text = bmiStatusWartosc(wskaznik)
-                prawidlowaMasa.text = komunikatDopuszczalnaMasa
-                roznica.text = komunikatRoznica
-                bmi.visibility = VISIBLE
-                bmiStatus.visibility = VISIBLE
-                bmiAgain.visibility = VISIBLE
-                prawidlowaMasa.visibility = VISIBLE
-                roznica.visibility = VISIBLE
-                btBMI.visibility = GONE
-                textWaga.visibility = GONE
-                textWzrost.visibility = GONE
-            } else
-                Toast.makeText(
-                    this,
-                    "Podaj wartość masy ciała i wzrostu powyżej 0",
-                    Toast.LENGTH_LONG
-                )
-                    .show()
-        }
+                btWyjdz.setOnClickListener{
+                    mAlertDialog.dismiss()
+                }
+            }
+        })
 
-        bmiAgain.setOnClickListener {
-            bmi.visibility = GONE
-            bmiStatus.visibility = GONE
-            bmiAgain.visibility = GONE
-            prawidlowaMasa.visibility = GONE
-            roznica.visibility = GONE
-            btBMI.visibility = VISIBLE
-            textWaga.visibility = VISIBLE
-            textWzrost.visibility = VISIBLE
-            waga.text.clear()
-            wzrost.text.clear()
-            waga.requestFocus()
-        }
 
         btDodajWynik?.setOnClickListener(object : View.OnClickListener {
             override fun onClick(v: View?) {
                 openActivityDodajWynik()
             }
         })
+    }
+
+
+    fun showUserInfo(user: User) {
+        var today = LocalDateTime.now()
+        var ostatniPapieros = user.dataOstatniego.toLocalDateTime()
+        var dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
+        var iloscPapierosowDziennie = user.iloscPapierosow
+
+        var nikotyna = dniBezPalenia
+        edNikotyna?.text = "Zaoszczędzasz swojemu organizmowi $nikotyna mg nikotyny we krwi"
+       /* var tekst = ""
+        if(nikotyna < 999){
+            tekst = "Zaoszczędzasz swojemu organizmowi $nikotyna mg nikotyny we krwi"
+        }else{
+            var nik = nikotyna/1000
+            tekst = "Zaoszczędzasz swojemu organizmowi $nikotyna g nikotyny we krwi"
+        }
+        edNikotyna?.setText(tekst)*/
+
+        var czasZaoszczedzony = 28.57*iloscPapierosowDziennie*dniBezPalenia
+        var czasFormat = String.format("%.2f", czasZaoszczedzony)
+        edCzas?.text = "Zyskujesz" +czasFormat+ " minut życia"
+
+       /* var czasGodz = czasZaoszczedzony/60
+        var teks1 = ""
+        if(czasZaoszczedzony < 60){
+            teks1 = "Zyskujesz $czasZaoszczedzony minut życia"
+        }else if(czasGodz > 1 && czasGodz < 999){
+            teks1 = "Zyskujesz $czasGodz godzin życia"
+        }else{
+            var czasDni = czasGodz/24
+            teks1 = "Zystkujesz $czasDni dni życia"
+        }
+        edCzas?.setText(teks1)*/
+
+
+    }
+
+
+    fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
+        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone)
+
+    private fun obliczBMI(waga: Double, wzrost: Double): Double{
+        return waga/(wzrost*wzrost)
     }
 
     private fun bmiStatusWartosc(bmi: Double): String {
@@ -134,8 +155,54 @@ class Zdrowie : AppCompatActivity() {
         return bmiStatus
     }
 
+    private fun dopuszczalnaWaga(wzrost: Double): String{
+        val dopuszczalnaMasaGorna =
+            25.0 * wzrost * wzrost
+        val wartoscDopuszczalnaMasaGorna = String.format("%.2f", dopuszczalnaMasaGorna)
+        val dopuszczalnaMasaDolna =
+            18.5 * wzrost * wzrost
+        val wartoscDopuszczalnaMasaDolna = String.format("%.2f", dopuszczalnaMasaDolna)
+        val komunikatDopuszczalnaMasa =
+            "Twoja masa ciała powinna być w zakresie: $wartoscDopuszczalnaMasaDolna - $wartoscDopuszczalnaMasaGorna [kg]"
+        return komunikatDopuszczalnaMasa
+    }
+
+    private fun roznica(wskaznik: Double, wartoscWagi: Double, wartoscWzrostu: Double): String{
+        var komunikatRoznica = ""
+        if (wskaznik < 18.5) {
+            var masaPrawidlowa =
+                18.5 * wartoscWzrostu * wartoscWzrostu // dla dolnej granicy normy
+            var r = masaPrawidlowa - wartoscWagi
+            var rW = String.format("%.2f", r)
+            komunikatRoznica = "Do normy musisz przybrać na wadze: $rW [kg]"
+        } else if (wskaznik > 25.0) {
+            var masaPrawidlowa =
+                25.0 * wartoscWzrostu * wartoscWzrostu // dla górnej granicy normy
+            var r = wartoscWagi - masaPrawidlowa
+            var rW = String.format("%.2f", r)
+            komunikatRoznica = "Do normy musisz zrzucić: $rW [kg]"
+        } else {
+            komunikatRoznica = "Tak trzymaj!"
+        }
+        return komunikatRoznica
+    }
+
+    private fun tost(){
+        Toast.makeText(
+            this,
+            "Podaj wartość masy ciała i wzrostu powyżej 0",
+            Toast.LENGTH_LONG
+        )
+            .show()
+    }
+
     private fun openActivityDodajWynik() {
         val intentA = Intent(this, ZdrowieDodajWynik::class.java)
         startActivity(intentA)
     }
+
+
+
+
+
 }

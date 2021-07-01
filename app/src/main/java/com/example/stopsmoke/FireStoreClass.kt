@@ -62,6 +62,9 @@ class FireStoreClass {
                     is Oszczedzaj -> {
                         activity.showUserInfo(user)
                     }
+                    is Zdrowie -> {
+                        activity.showUserInfo(user)
+                    }
                 }
             }
     }
