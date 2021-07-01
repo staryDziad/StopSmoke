@@ -9,6 +9,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.Timestamp
 import com.google.protobuf.Empty
 import java.time.Duration
@@ -21,7 +22,7 @@ class Oszczedzaj : AppCompatActivity() {
     private var btCele: Button? = null
     private var txCel1: TextView? = null
     private var progr = 0
-    private var mDialog : Dialog? = null
+
     private var btProba: Button? = null
     private var cel1_popup: EditText? = null
     private var cena1_popup: EditText? = null
@@ -32,7 +33,6 @@ class Oszczedzaj : AppCompatActivity() {
         setContentView(R.layout.activity_oszczedzaj)
         btCele = findViewById(R.id.btCele)
         txCel1 = findViewById(R.id.txCel1)
-        mDialog = Dialog(this)
         btProba = findViewById(R.id.btProba)
         cel1_popup = findViewById(R.id.cel1_popup)
         cena1_popup = findViewById(R.id.cena1_popup)
@@ -40,40 +40,33 @@ class Oszczedzaj : AppCompatActivity() {
 
         FireStoreClass().getUserDetails(this)
 
-        btProba?.setOnClickListener {
-            mDialog!!.setContentView(R.layout.popup_cel1)
-            mDialog!!.show()
-            var price = cena1_popup
-            var goal = cel1_popup
-
-            //mDialog!!.setCanceledOnTouchOutside(true)
-            //mDialog!!.dismiss()
-            /*                btOk?.setOnClickListener(object: View.OnClickListener{
-                                override fun onClick(v: View){
-                                    //mDialog!!.setContentView(R.layout.popup_cel1)
-                                    mDialog!!.dismiss()
-                                }
-                            })*/
-        }
-
-        btOk?.setOnClickListener {
-            mDialog!!.dismiss()
-            //finish()
-        }
-
-//        mDialog!!.setOnShowListener {
-//            btOk?.setOnClickListener {
-//                mDialog!!.dismiss()
-//            }
-//        }
-
-/*        btOk?.setOnClickListener(object: View.OnClickListener{
+        btProba?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
+                val mDialogView = LayoutInflater.from(this@Oszczedzaj).inflate(R.layout.cel1_popup, null)
+                val mBuilder = AlertDialog.Builder(this@Oszczedzaj)
+                    .setView(mDialogView)
+                    .setTitle("Cel 1")
 
-                mDialog!!.dismiss()
+                val mAlertDialog = mBuilder.show()
+                val btZatwierdz = mDialogView.findViewById<Button>(R.id.btDodajCel1)
+                val cel1 = mDialogView.findViewById<EditText>(R.id.edCel1Nazwa)
+                val cena1 = mDialogView.findViewById<EditText>(R.id.edCel1Nazwa)
+
+                val btNiewazna = mDialogView.findViewById<Button>(R.id.btNiewazne)
+                FireStoreClass().getUserDetails(this@Oszczedzaj)
+
+                btZatwierdz.setOnClickListener{
+                    //updateCel1()
+                    //updateCena1()
+                    mAlertDialog.dismiss()
+
+                }
+                btNiewazna.setOnClickListener{
+                    mAlertDialog.dismiss()
+                }
 
             }
-        })*/
+        })
 
         btCele?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
@@ -89,12 +82,9 @@ class Oszczedzaj : AppCompatActivity() {
         val dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
         val cenaPaczki = user.cenaPaczki
         val zaoszczedziles = cenaPaczki*dniBezPalenia.toDouble()
+
         val cena1 = user.cena1
-        val cena2 = user.cena2
-        val cena3 = user.cena3
         val cel1 = user.cel1
-        val cel2 = user.cel2
-        val cel3 = user.cel3
 
         var x = (zaoszczedziles/cena1)*100
         var x1 = x.toInt()
@@ -111,7 +101,6 @@ class Oszczedzaj : AppCompatActivity() {
             txCel1?.text = "$cel1 osiągnięty"
         }
         updateProgressBar()
-
     }
 
     private fun openActivityCele(){
@@ -125,6 +114,32 @@ class Oszczedzaj : AppCompatActivity() {
         var text_view_progress = findViewById<TextView>(R.id.text_view_progress)
         progress_bar.progress = progr
         text_view_progress.text = "$progr%"
+    }
+
+
+    private fun updateCena1(){
+        if(cena1_popup?.text.toString().isNotEmpty()){
+            val cena = cena1_popup?.text.toString().toDouble()
+
+            if(cena != null) {
+                FireStoreClass().updateCena1(this, cena)
+            }else {
+                FireStoreClass().updateCena1(this, 0.0)
+            }
+        }
+
+    }
+    private fun updateCel1(){
+        if(cel1_popup?.text.toString().isNotEmpty()){
+            val cel = cel1_popup?.text.toString()
+
+            if(cel != null) {
+                FireStoreClass().updateCel1(this, cel)
+            }else {
+                FireStoreClass().updateCel1(this, "Nie wybrano celu")
+            }
+        }
+
     }
 
     fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(

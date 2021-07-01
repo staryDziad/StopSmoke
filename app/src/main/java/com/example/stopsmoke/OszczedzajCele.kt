@@ -34,12 +34,12 @@ class OszczedzajCele : AppCompatActivity() {
         btAkceptujCele?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
 
-                updateCena1()
+                /*updateCena1()
                 updateCena2()
                 updateCena3()
                 updateCel1()
                 updateCel2()
-                updateCel3()
+                updateCel3()*/
                 openActivityBackOszczedzanie()
 
                 /* var cel1_1 = cel1?.text.toString()

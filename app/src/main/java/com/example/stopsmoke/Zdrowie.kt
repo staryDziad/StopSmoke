@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
+import android.view.View.GONE
+import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.Timestamp
@@ -46,7 +48,8 @@ class Zdrowie : AppCompatActivity() {
                 val wzrost = mDialogView.findViewById<EditText>(R.id.edNr2)
                 val txCokolwiek = mDialogView.findViewById<TextView>(R.id.txCokolwiek)
 
-
+                btLicz.visibility = VISIBLE
+                txCokolwiek.visibility = GONE
 
                 btLicz.setOnClickListener{
 
@@ -69,6 +72,8 @@ class Zdrowie : AppCompatActivity() {
                         val status = bmiStatusWartosc(wskaznikBMI)
                         val roznica = roznica(wskaznikBMI, n1, n2)
                         txCokolwiek?.setText("$bmiString \n $status \n $dopWaga \n $roznica ")
+                        txCokolwiek.visibility = VISIBLE
+                        btLicz.visibility = GONE
                     } else{
                         tost()
                     }
