@@ -16,7 +16,7 @@
 
 
         android:layout_marginStart="20dp"
-        android:layout_marginTop="28dp"
+        android:layout_marginTop="10dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/gif4" />
 
@@ -24,8 +24,11 @@
         android:id="@+id/btGif2"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
         android:layout_centerInParent="true"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="220dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/gif2" />
 
@@ -33,11 +36,54 @@
         android:id="@+id/btGif3"
         android:layout_width="wrap_content"
         android:layout_height="200dp"
+        android:layout_below="@+id/btGif2"
         android:layout_centerHorizontal="true"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+
+
         android:layout_marginEnd="20dp"
-        android:layout_marginTop="500dp"
-
-
         android:src="@drawable/gif3" />
+
+    <TextView
+        android:id="@+id/bardzo"
+        android:layout_width="88dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="36dp"
+        android:layout_marginTop="92dp"
+        android:text="BARDZO"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/troche"
+        android:layout_width="88dp"
+        android:layout_height="39dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginStart="245dp"
+        android:layout_marginTop="334dp"
+        android:text="TROCHĘ"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/strasznie"
+        android:layout_width="wrap_content"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_centerInParent="true"
+        android:layout_marginStart="29dp"
+        android:layout_marginTop="490dp"
+        android:text="STRASZNIE"
+        android:textColor="@color/white"
+        android:textSize="20sp"
+        android:textStyle="bold" />
 </RelativeLayout>

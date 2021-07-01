@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity() {
 
     private var ileNiePalisz: TextView? = null
     private var ileZaoszczedziles: TextView? = null
+    private var powitanie: TextView? = null
 
     private var btOchota: Button? = null
     private var btOszczedzaj: Button? = null
@@ -28,6 +29,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         ileNiePalisz = findViewById(R.id.txNiePaliszOd)
         ileZaoszczedziles = findViewById(R.id.txZaoszczedzilesX)
+        powitanie = findViewById(R.id.txPowitanie)
 
         btOchota = findViewById(R.id.btOchota)
         btOszczedzaj = findViewById(R.id.btOszczedzaj)
@@ -71,9 +73,10 @@ class MainActivity : AppCompatActivity() {
         val dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
         val cenaPaczki = user.cenaPaczki
         val zaoszczedziles = cenaPaczki*dniBezPalenia.toDouble()
-        ileNiePalisz?.text = "Nie palisz od: " + dniBezPalenia.toString() + "dni"
-        ileZaoszczedziles?.text = "Oszczędzasz: " + zaoszczedziles.toString() + "PLN"
-
+        val uzytkownik = user.name
+        ileNiePalisz?.text = "Nie palisz od: " + dniBezPalenia.toString() + " dni"
+        ileZaoszczedziles?.text = "Oszczędzasz: " + zaoszczedziles.toString() + " PLN"
+        powitanie?.text = "Witaj, " + uzytkownik + " !"
     }
 
     private fun openActivityOchota(){

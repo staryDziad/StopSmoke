@@ -1,5 +1,6 @@
 package com.example.stopsmoke
 
+import android.annotation.SuppressLint
 import android.app.Dialog
 import android.content.Context
 import android.content.Intent
@@ -37,27 +38,42 @@ class Oszczedzaj : AppCompatActivity() {
         cena1_popup = findViewById(R.id.cena1_popup)
         btOk = findViewById(R.id.btOk)
 
-
-
         FireStoreClass().getUserDetails(this)
 
-        btProba?.setOnClickListener(object: View.OnClickListener{
+        btProba?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_cel1)
+            mDialog!!.show()
+            var price = cena1_popup
+            var goal = cel1_popup
+
+            //mDialog!!.setCanceledOnTouchOutside(true)
+            //mDialog!!.dismiss()
+            /*                btOk?.setOnClickListener(object: View.OnClickListener{
+                                override fun onClick(v: View){
+                                    //mDialog!!.setContentView(R.layout.popup_cel1)
+                                    mDialog!!.dismiss()
+                                }
+                            })*/
+        }
+
+        btOk?.setOnClickListener {
+            mDialog!!.dismiss()
+            //finish()
+        }
+
+//        mDialog!!.setOnShowListener {
+//            btOk?.setOnClickListener {
+//                mDialog!!.dismiss()
+//            }
+//        }
+
+/*        btOk?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
-                mDialog!!.setContentView(R.layout.popup_cel1)
-                mDialog!!.show()
-                var price = cena1_popup
-                var goal = cel1_popup
-                btOk?.setOnClickListener(object: View.OnClickListener{
-                    override fun onClick(v: View){
-                        //mDialog!!.setContentView(R.layout.popup_cel1)
-                        mDialog!!.dismiss()
-                    }
-                })
+
+                mDialog!!.dismiss()
 
             }
-        })
-
-
+        })*/
 
         btCele?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
@@ -65,6 +81,8 @@ class Oszczedzaj : AppCompatActivity() {
             }
         })
     }
+
+    @SuppressLint("SetTextI18n")
     fun showUserInfo(user: User) {
         val today = LocalDateTime.now()
         val ostatniPapieros = user.dataOstatniego.toLocalDateTime()
@@ -87,7 +105,7 @@ class Oszczedzaj : AppCompatActivity() {
 
         }else if(x1 in 1..99){
             progr = x1
-            txCel1?.text = "$cel1"
+            txCel1?.text = cel1
         }else{
             progr = 100
             txCel1?.text = "$cel1 osiągnięty"
@@ -95,11 +113,13 @@ class Oszczedzaj : AppCompatActivity() {
         updateProgressBar()
 
     }
+
     private fun openActivityCele(){
         val intent = Intent(this, OszczedzajCele::class.java)
         startActivity(intent)
     }
 
+    @SuppressLint("SetTextI18n")
     private fun updateProgressBar() {
         var progress_bar = findViewById<ProgressBar>(R.id.progress_bar)
         var text_view_progress = findViewById<TextView>(R.id.text_view_progress)

@@ -85,8 +85,8 @@
 
     <TextView
         android:id="@+id/txNiePaliszOd"
-        android:layout_width="152dp"
-        android:layout_height="53dp"
+        android:layout_width="148dp"
+        android:layout_height="52dp"
         app:layout_constraintBottom_toTopOf="@+id/txZaoszczedzilesX"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -95,9 +95,8 @@
 
     <TextView
         android:id="@+id/txZaoszczedzilesX"
-        android:layout_width="147dp"
-        android:layout_height="46dp"
-        android:text="Zaoszczedziles X PLN"
+        android:layout_width="159dp"
+        android:layout_height="54dp"
         app:layout_constraintBottom_toTopOf="@+id/btOchota"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
@@ -158,4 +157,15 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toEndOf="@+id/imSmutnaBuzka"
         app:layout_constraintTop_toBottomOf="@+id/btZdrowie" />
+
+    <TextView
+        android:id="@+id/txPowitanie"
+        android:layout_width="275dp"
+        android:layout_height="17dp"
+        android:layout_marginTop="16dp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

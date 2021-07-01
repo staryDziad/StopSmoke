@@ -10,11 +10,10 @@ import pl.droidsonroids.gif.GifImageButton
 
 class Ochota_na_papierosa : AppCompatActivity() {
 
-    private var btGif1 : GifImageButton? = null
-    private var btGif2 : GifImageButton? = null
-    private var btGif3 : GifImageButton? = null
-    private var mDialog : Dialog? = null
-
+    private var btGif1: GifImageButton? = null
+    private var btGif2: GifImageButton? = null
+    private var btGif3: GifImageButton? = null
+    private var mDialog: Dialog? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,26 +23,22 @@ class Ochota_na_papierosa : AppCompatActivity() {
         btGif3 = findViewById(R.id.btGif3)
         mDialog = Dialog(this)
 
-
-
-        btGif1?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        btGif1?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.papieros_gif_1)
                 mDialog!!.show()
-
             }
         })
 
-        btGif2?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        btGif2?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.papieros_gif_2)
                 mDialog!!.show()
-
             }
         })
 
-        btGif3?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        btGif3?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.papieros_gif_3)
                 mDialog!!.show()
             }

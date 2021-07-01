@@ -21,8 +21,8 @@
 
     <ImageButton
         android:id="@+id/btBMI"
-        android:layout_width="149dp"
-        android:layout_height="66dp"
+        android:layout_width="202dp"
+        android:layout_height="87dp"
         android:layout_weight="1"
         android:adjustViewBounds="true"
         android:padding="20dp"
@@ -36,21 +36,21 @@
 
     <EditText
         android:id="@+id/edWaga"
-        android:layout_width="135dp"
-        android:layout_height="44dp"
+        android:layout_width="137dp"
+        android:layout_height="43dp"
         android:ems="10"
         android:inputType="numberDecimal"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/edWzrost"
-        app:layout_constraintHorizontal_bias="0.206"
+        app:layout_constraintHorizontal_bias="0.232"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="0.074" />
 
     <EditText
         android:id="@+id/edWzrost"
-        android:layout_width="134dp"
-        android:layout_height="52dp"
+        android:layout_width="129dp"
+        android:layout_height="41dp"
         android:layout_marginEnd="28dp"
         android:ems="10"
         android:inputType="numberDecimal"
@@ -63,10 +63,10 @@
         android:id="@+id/txBMI"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:visibility="gone"
         android:textSize="27dp"
         android:textStyle="bold"
-        android:visibility="gone"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -78,14 +78,44 @@
         android:id="@+id/txBmiStatus"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-
+        android:visibility="gone"
         android:textSize="25dp"
         android:textStyle="bold"
-        android:visibility="gone"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/txPrawidlowaMasa"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textSize="15dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.571" />
+
+    <TextView
+        android:id="@+id/txRoznica"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        android:textSize="15dp"
+        android:textStyle="bold"
+
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.501"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.645" />
 
     <TextView
         android:id="@+id/btBMIAgain"
@@ -94,17 +124,19 @@
         android:text="Policz BMI jeszcze raz"
         android:textStyle="bold"
         android:visibility="gone"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.537" />
+        app:layout_constraintVertical_bias="0.73" />
 
     <TextView
         android:id="@+id/textWaga"
         android:layout_width="156dp"
         android:layout_height="21dp"
-        android:text="Waga [kg]"
+        android:text="Masa ciała [kg]"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toStartOf="@+id/textWzost"
         app:layout_constraintHorizontal_bias="0.273"
@@ -116,6 +148,7 @@
         android:id="@+id/textWzost"
         android:layout_width="160dp"
         android:layout_height="20dp"
+        android:layout_marginEnd="16dp"
         android:text="Wzrost [m]"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
