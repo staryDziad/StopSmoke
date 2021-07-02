@@ -18,7 +18,7 @@ class FireStoreClass {
             .set(userInfo, SetOptions.merge())
             .addOnSuccessListener {
 
-                activity.userRegistrationSuccess()
+                //activity.userRegistrationSuccess()
             }
             .addOnFailureListener { e ->
                 Log.e(

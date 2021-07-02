@@ -9,5 +9,5 @@
     <color name="white">#FFFFFFFF</color>
 
     <color name="colorSnackBarSuccess">#03A9F4</color>
-    <color name="colorSnackBarError">#EB1B63</color>
+    <color name="colorSnackBarError">#FF1744</color>
 </resources>

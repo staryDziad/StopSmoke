@@ -101,33 +101,13 @@ class Zdrowie : AppCompatActivity() {
         var dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
         var iloscPapierosowDziennie = user.iloscPapierosow
 
-        var nikotyna = dniBezPalenia
-        edNikotyna?.text = "Zaoszczędzasz swojemu organizmowi $nikotyna mg nikotyny we krwi"
-       /* var tekst = ""
-        if(nikotyna < 999){
-            tekst = "Zaoszczędzasz swojemu organizmowi $nikotyna mg nikotyny we krwi"
-        }else{
-            var nik = nikotyna/1000
-            tekst = "Zaoszczędzasz swojemu organizmowi $nikotyna g nikotyny we krwi"
-        }
-        edNikotyna?.setText(tekst)*/
+        var nikotyna = dniBezPalenia.toDouble()
+        var n = przeliczeniaNikotyna(nikotyna)
+        edNikotyna?.text = n
 
         var czasZaoszczedzony = 28.57*iloscPapierosowDziennie*dniBezPalenia
-        var czasFormat = String.format("%.2f", czasZaoszczedzony)
-        edCzas?.text = "Zyskujesz" +czasFormat+ " minut życia"
-
-       /* var czasGodz = czasZaoszczedzony/60
-        var teks1 = ""
-        if(czasZaoszczedzony < 60){
-            teks1 = "Zyskujesz $czasZaoszczedzony minut życia"
-        }else if(czasGodz > 1 && czasGodz < 999){
-            teks1 = "Zyskujesz $czasGodz godzin życia"
-        }else{
-            var czasDni = czasGodz/24
-            teks1 = "Zystkujesz $czasDni dni życia"
-        }
-        edCzas?.setText(teks1)*/
-
+        var czas = przeliczeniaCzas(czasZaoszczedzony)
+        edCzas?.text = czas
 
     }
 
@@ -199,6 +179,34 @@ class Zdrowie : AppCompatActivity() {
             Toast.LENGTH_LONG
         )
             .show()
+    }
+
+    private fun przeliczeniaNikotyna(nikotyna: Double): String{
+        var tekst = ""
+        if(nikotyna < 999){
+            tekst = "Zaoszczędzasz swojemu organizmowi $nikotyna mg nikotyny we krwi"
+        }else{
+            var nik = nikotyna/1000
+            tekst = "Zaoszczędzasz swojemu organizmowi $nik g nikotyny we krwi"
+        }
+        return tekst
+    }
+    private fun przeliczeniaCzas(czas: Double): String{
+
+       var tekst1 = ""
+       if(czas < 60){
+           var czasFormat = String.format("%.2f", czas)
+           tekst1 = "Zyskujesz $czasFormat minut życia"
+       }else if(czas >= 60 && czas <= 59940){ //odpowiednik 999 godz
+           var czasGodz = czas/60
+           var czasFormat1 = String.format("%.2f", czasGodz)
+           tekst1 = "Zyskujesz $czasFormat1 godzin życia"
+       }else{
+           var czasDni = (czas/24)/60
+           var czasFormat2 = String.format("%.2f", czasDni)
+           tekst1 = "Zystkujesz $czasFormat2 dni życia"
+       }
+       return tekst1
     }
 
     private fun openActivityDodajWynik() {

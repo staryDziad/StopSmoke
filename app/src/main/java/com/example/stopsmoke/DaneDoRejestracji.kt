@@ -4,10 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
-import android.widget.CalendarView
-import android.widget.DatePicker
-import android.widget.EditText
+import android.widget.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import java.util.*
@@ -46,11 +43,19 @@ class DaneDoRejestracji : AppCompatActivity() {
 
         btZapis?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v : View){
-                updateLiczbaPapierosow()
-                updateCena()
-                updateData(tmpStamp!!)
-                //finish()
-                goToLogin()
+                if(edCenaPapierosow?.text.toString().isNotEmpty() && edLiczbaPapierosow?.text.toString().isNotEmpty() && tmpStamp != null){
+                    updateLiczbaPapierosow()
+                    updateCena()
+                    updateData(tmpStamp!!)
+                    finish()
+                    goToLogin()
+                    tostSukces()
+                }
+                else{
+                    tost()
+                }
+
+
             }
         })
 
@@ -97,5 +102,23 @@ class DaneDoRejestracji : AppCompatActivity() {
     private fun goToLogin(){
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
+    }
+
+    private fun tost(){
+        Toast.makeText(
+            this,
+            "Uzupełnij wszystkie pola",
+            Toast.LENGTH_LONG
+        )
+            .show()
+    }
+    fun tostSukces(){
+
+        Toast.makeText(
+            this,
+            resources.getString(R.string.register_success),
+            Toast.LENGTH_SHORT
+        ).show()
+
     }
 }

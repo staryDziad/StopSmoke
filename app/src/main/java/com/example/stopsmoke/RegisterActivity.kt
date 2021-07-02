@@ -117,15 +117,7 @@ class RegisterActivity : BaseActivity() {
         }
     }
 
-    fun userRegistrationSuccess(){
 
-        Toast.makeText(
-            this@RegisterActivity,
-            resources.getString(R.string.register_success),
-            Toast.LENGTH_SHORT
-        ).show()
-
-    }
 
     private fun openActivityDaneDoRejestracji(){
         val intent = Intent(this, DaneDoRejestracji::class.java)

@@ -4,12 +4,12 @@ import android.app.Dialog
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.ImageView
+import android.widget.*
+import androidx.appcompat.app.AlertDialog
 import com.google.firebase.Timestamp
 import java.time.Duration
 import java.time.Instant
@@ -31,6 +31,7 @@ class Osiagniecia : AppCompatActivity() {
     private var imMedal3Miesiace: ImageView? = null
     private var imMedal9Miesiecy: ImageView? = null
     private var mDialog: Dialog? = null
+    private var imHelp: ImageView? = null
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -50,6 +51,23 @@ class Osiagniecia : AppCompatActivity() {
         imMedal3Miesiace = findViewById(R.id.imMedal3Miesiace)
         imMedal9Miesiecy = findViewById(R.id.imMedal9Miesiecy)
         mDialog = Dialog(this)
+        imHelp = findViewById(R.id.imHelp)
+
+        imHelp?.setOnClickListener(object: View.OnClickListener{
+            override fun onClick(v: View){
+                val mDialogView = LayoutInflater.from(this@Osiagniecia).inflate(R.layout.help_osiagniecia_popup, null)
+                val mBuilder = AlertDialog.Builder(this@Osiagniecia)
+                    .setView(mDialogView)
+                    .setTitle("Twoje osiągnięcia")
+
+                val mAlertDialog = mBuilder.show()
+                val btOk = mDialogView.findViewById<Button>(R.id.btOkHelp)
+
+                btOk.setOnClickListener{
+                    mAlertDialog.dismiss()
+                }
+            }
+        })
 
 
         imBlackPuchar1?.setOnClickListener(object: View.OnClickListener{

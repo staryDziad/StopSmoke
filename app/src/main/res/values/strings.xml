@@ -1,9 +1,9 @@
 <resources>
     <string name="app_name">StopSmoke</string>
-    <string name="err_msg_enter_email">Please enter your email</string>
-    <string name="err_msg_enter_name">Please enter your name</string>
-    <string name="err_msg_enter_password">Please enter your password</string>
-    <string name="err_msg_enter_reppassword">Please confirm your password</string>
-    <string name="err_msg_password_mismatch">Passwords mismatch</string>
-    <string name="register_success">You are registered successfully.</string>
+    <string name="err_msg_enter_email">Podaj adres e-mail</string>
+    <string name="err_msg_enter_name">Podaj imię</string>
+    <string name="err_msg_enter_password">Podaj hasło</string>
+    <string name="err_msg_enter_reppassword">Powtórz hasło</string>
+    <string name="err_msg_password_mismatch">Powtórzone hasło nie zgadza się z hasłem pierwotnym</string>
+    <string name="register_success">Rejestracja przebiegła pomyślnie</string>
 </resources>
