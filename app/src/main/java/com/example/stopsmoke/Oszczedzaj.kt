@@ -1,8 +1,6 @@
 package com.example.stopsmoke
 
 import android.annotation.SuppressLint
-import android.app.Dialog
-import android.content.Context
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -11,7 +9,6 @@ import android.view.View
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.Timestamp
-import com.google.protobuf.Empty
 import java.time.Duration
 import java.time.Instant
 import java.time.LocalDateTime
@@ -35,38 +32,36 @@ class Oszczedzaj : AppCompatActivity() {
         txCel1 = findViewById(R.id.txCel1)
         btProba = findViewById(R.id.btProba)
         cel1_popup = findViewById(R.id.cel1_popup)
-        cena1_popup = findViewById(R.id.cena1_popup)
+        //cena1_popup = findViewById(R.id.cel1_popup)
         btOk = findViewById(R.id.btOk)
 
         FireStoreClass().getUserDetails(this)
 
-        btProba?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
-                val mDialogView = LayoutInflater.from(this@Oszczedzaj).inflate(R.layout.cel1_popup, null)
-                val mBuilder = AlertDialog.Builder(this@Oszczedzaj)
-                    .setView(mDialogView)
-                    .setTitle("Cel 1")
+        btProba?.setOnClickListener {
+            val mDialogView =
+                LayoutInflater.from(this@Oszczedzaj).inflate(R.layout.cel1_popup, null)
+            val mBuilder = AlertDialog.Builder(this@Oszczedzaj)
+                .setView(mDialogView)
+                .setTitle("Cel 1")
 
-                val mAlertDialog = mBuilder.show()
-                val btZatwierdz = mDialogView.findViewById<Button>(R.id.btDodajCel1)
-                val cel1 = mDialogView.findViewById<EditText>(R.id.edCel1Nazwa)
-                val cena1 = mDialogView.findViewById<EditText>(R.id.edCel1Nazwa)
+            val mAlertDialog = mBuilder.show()
+            val btZatwierdz = mDialogView.findViewById<Button>(R.id.btDodajCel1)
+            val cel1 = mDialogView.findViewById<EditText>(R.id.edCel1Nazwa)
+            val cena1 = mDialogView.findViewById<EditText>(R.id.edCel1Cena)
 
-                val btNiewazna = mDialogView.findViewById<Button>(R.id.btNiewazne)
-                FireStoreClass().getUserDetails(this@Oszczedzaj)
+            val btNiewazna = mDialogView.findViewById<Button>(R.id.btNiewazne)
+            FireStoreClass().getUserDetails(this@Oszczedzaj)
 
-                btZatwierdz.setOnClickListener{
-                    //updateCel1()
-                    //updateCena1()
-                    mAlertDialog.dismiss()
-
-                }
-                btNiewazna.setOnClickListener{
-                    mAlertDialog.dismiss()
-                }
-
+            btZatwierdz.setOnClickListener {
+                updateCel1(cel1)
+                updateCena1(cena1)
+                mAlertDialog.dismiss()
             }
-        })
+
+            btNiewazna.setOnClickListener {
+                mAlertDialog.dismiss()
+            }
+        }
 
         btCele?.setOnClickListener(object: View.OnClickListener{
             override fun onClick(v: View){
@@ -116,10 +111,9 @@ class Oszczedzaj : AppCompatActivity() {
         text_view_progress.text = "$progr%"
     }
 
-
-    private fun updateCena1(){
-        if(cena1_popup?.text.toString().isNotEmpty()){
-            val cena = cena1_popup?.text.toString().toDouble()
+    private fun updateCena1(cena1: EditText) {
+        if(cena1.text.toString().isNotEmpty()){
+            val cena = cena1.text.toString().toDouble()
 
             if(cena != null) {
                 FireStoreClass().updateCena1(this, cena)
@@ -127,11 +121,11 @@ class Oszczedzaj : AppCompatActivity() {
                 FireStoreClass().updateCena1(this, 0.0)
             }
         }
-
     }
-    private fun updateCel1(){
-        if(cel1_popup?.text.toString().isNotEmpty()){
-            val cel = cel1_popup?.text.toString()
+
+    private fun updateCel1(cel1: EditText) {
+        if(cel1.text.toString().isNotEmpty()){
+            val cel = cel1.text.toString()
 
             if(cel != null) {
                 FireStoreClass().updateCel1(this, cel)

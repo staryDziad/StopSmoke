@@ -11,16 +11,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="numberDecimal"
-        android:hint="Waga [kg]"/>
+        android:hint="Masa ciała [kg]"
+        android:inputType="numberDecimal" />
 
     <EditText
         android:id="@+id/edNr2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:inputType="numberDecimal"
-        android:hint="Wzorst [m]"/>
+        android:hint="Wzrost [m]"
+        android:inputType="numberDecimal" />
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -48,7 +48,7 @@
             android:gravity="center"
             android:text="BMI wynik"
             android:textSize="18dp"
-            android:textStyle="bold"/>
+            />
 
 
     </LinearLayout>

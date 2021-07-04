@@ -53,9 +53,10 @@ class Osiagniecia : AppCompatActivity() {
         mDialog = Dialog(this)
         imHelp = findViewById(R.id.imHelp)
 
-        imHelp?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
-                val mDialogView = LayoutInflater.from(this@Osiagniecia).inflate(R.layout.help_osiagniecia_popup, null)
+        imHelp?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                val mDialogView = LayoutInflater.from(this@Osiagniecia)
+                    .inflate(R.layout.help_osiagniecia_popup, null)
                 val mBuilder = AlertDialog.Builder(this@Osiagniecia)
                     .setView(mDialogView)
                     .setTitle("Twoje osiągnięcia")
@@ -63,82 +64,81 @@ class Osiagniecia : AppCompatActivity() {
                 val mAlertDialog = mBuilder.show()
                 val btOk = mDialogView.findViewById<Button>(R.id.btOkHelp)
 
-                btOk.setOnClickListener{
+                btOk.setOnClickListener {
                     mAlertDialog.dismiss()
                 }
             }
         })
 
+        imBlackPuchar1?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imBlackPuchar2?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
+        imBlackPuchar3?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
+                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+                mDialog!!.show()
+            }
+        })
 
-        imBlackPuchar1?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imBlackPuchar2?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imBlackPuchar3?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-
-        imPucharRok?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imPucharRok?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imPucharPolRoku?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imPucharPolRoku?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imPucharMiesiac?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imPucharMiesiac?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imMedalBlack1?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imMedalBlack1?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imMedalBlack2?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imMedalBlack2?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imMedalBlack3?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imMedalBlack3?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imMedalTydzien?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imMedalTydzien?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imMedal3Miesiace?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imMedal3Miesiace?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
                 mDialog!!.show()
             }
         })
-        imMedal9Miesiecy?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v: View){
+        imMedal9Miesiecy?.setOnClickListener(object : View.OnClickListener {
+            override fun onClick(v: View) {
                 mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
                 mDialog!!.show()
             }
@@ -153,23 +153,22 @@ class Osiagniecia : AppCompatActivity() {
         val ostatniPapieros = user.dataOstatniego.toLocalDateTime()
         val dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
 
-        if(dniBezPalenia in 8..30){
+        if (dniBezPalenia in 8..30) {
             imMedalBlack3?.visibility = GONE
             imMedalTydzien?.visibility = VISIBLE
-        }else if (dniBezPalenia in 31..90){
+        } else if (dniBezPalenia in 31..90) {
             imMedalBlack3?.visibility = GONE
             imMedalTydzien?.visibility = VISIBLE
             imBlackPuchar3?.visibility = GONE
             imPucharMiesiac?.visibility = VISIBLE
-        }else if(dniBezPalenia in 90..179){
+        } else if (dniBezPalenia in 90..179) {
             imMedalBlack3?.visibility = GONE
             imMedalTydzien?.visibility = VISIBLE
             imBlackPuchar3?.visibility = GONE
             imPucharMiesiac?.visibility = VISIBLE
             imMedalBlack2?.visibility = GONE
             imMedal3Miesiace?.visibility = VISIBLE
-        }
-        else if(dniBezPalenia in 180..272){
+        } else if (dniBezPalenia in 180..272) {
             imMedalBlack3?.visibility = GONE
             imMedalTydzien?.visibility = VISIBLE
             imBlackPuchar3?.visibility = GONE
@@ -178,8 +177,7 @@ class Osiagniecia : AppCompatActivity() {
             imMedal3Miesiace?.visibility = VISIBLE
             imBlackPuchar2?.visibility = GONE
             imPucharPolRoku?.visibility = VISIBLE
-        }
-        else if(dniBezPalenia in 273..363){
+        } else if (dniBezPalenia in 273..363) {
             imMedalBlack3?.visibility = GONE
             imMedalTydzien?.visibility = VISIBLE
             imBlackPuchar3?.visibility = GONE
@@ -190,8 +188,7 @@ class Osiagniecia : AppCompatActivity() {
             imPucharPolRoku?.visibility = VISIBLE
             imMedalBlack1?.visibility = GONE
             imMedal9Miesiecy?.visibility = VISIBLE
-        }
-        else if(dniBezPalenia >= 364){
+        } else if (dniBezPalenia >= 364) {
             imBlackPuchar3?.visibility = GONE
             imPucharMiesiac?.visibility = VISIBLE
             imBlackPuchar2?.visibility = GONE
@@ -203,7 +200,6 @@ class Osiagniecia : AppCompatActivity() {
     }
 
     fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
-        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone)
-
-
+        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone
+    )
 }

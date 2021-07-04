@@ -2,6 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/logout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".MainActivity">
@@ -10,9 +11,8 @@
         android:id="@+id/imPapieros"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/imKasa"
-        app:layout_constraintEnd_toStartOf="@+id/txNiePaliszOd"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="76dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/cigarette_1f6ac" />
@@ -21,9 +21,8 @@
         android:id="@+id/imKasa"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        app:layout_constraintBottom_toTopOf="@+id/imWoozyFace"
-        app:layout_constraintEnd_toStartOf="@+id/txZaoszczedzilesX"
-        app:layout_constraintHorizontal_bias="0.5"
+        android:layout_marginStart="44dp"
+        android:layout_marginTop="28dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imPapieros"
         app:srcCompat="@drawable/money_with_wings_1f4b8" />
@@ -85,27 +84,34 @@
 
     <TextView
         android:id="@+id/txNiePaliszOd"
-        android:layout_width="148dp"
-        android:layout_height="52dp"
+        android:layout_width="216dp"
+        android:layout_height="62dp"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toTopOf="@+id/txZaoszczedzilesX"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toEndOf="@+id/imPapieros"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.745" />
 
     <TextView
         android:id="@+id/txZaoszczedzilesX"
-        android:layout_width="159dp"
-        android:layout_height="54dp"
-        app:layout_constraintBottom_toTopOf="@+id/btOchota"
+        android:layout_width="216dp"
+        android:layout_height="62dp"
+        android:layout_marginTop="164dp"
+        android:gravity="center"
+        android:textSize="22sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toEndOf="@+id/imKasa"
-        app:layout_constraintTop_toBottomOf="@+id/txNiePaliszOd" />
+        app:layout_constraintTop_toTopOf="parent" />
 
     <Button
         android:id="@+id/btOchota"
-        android:layout_width="153dp"
+        android:layout_width="185dp"
         android:layout_height="55dp"
         android:text="Ochota na papierosa?"
         app:layout_constraintBottom_toTopOf="@+id/btOszczedzaj"
@@ -116,7 +122,7 @@
 
     <Button
         android:id="@+id/btOszczedzaj"
-        android:layout_width="153dp"
+        android:layout_width="185dp"
         android:layout_height="55dp"
         android:text="Zacznij oszczędzać!"
         app:layout_constraintBottom_toTopOf="@+id/btOsiagniecia"
@@ -127,7 +133,7 @@
 
     <Button
         android:id="@+id/btOsiagniecia"
-        android:layout_width="153dp"
+        android:layout_width="185dp"
         android:layout_height="55dp"
         android:text="Twoje osiągnięcia"
         app:layout_constraintBottom_toTopOf="@+id/btZdrowie"
@@ -138,7 +144,7 @@
 
     <Button
         android:id="@+id/btZdrowie"
-        android:layout_width="153dp"
+        android:layout_width="185dp"
         android:layout_height="55dp"
         android:text="Twoje zdrowie"
         app:layout_constraintBottom_toTopOf="@+id/btZerowanie"
@@ -149,7 +155,7 @@
 
     <Button
         android:id="@+id/btZerowanie"
-        android:layout_width="153dp"
+        android:layout_width="185dp"
         android:layout_height="55dp"
         android:text="A jednak zapaliłeś...?"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -160,12 +166,31 @@
 
     <TextView
         android:id="@+id/txPowitanie"
-        android:layout_width="275dp"
-        android:layout_height="17dp"
-        android:layout_marginTop="16dp"
-        android:textStyle="bold"
+        android:layout_width="293dp"
+        android:layout_height="37dp"
+        android:textStyle="italic"
+        android:textSize="22sp"
+        android:gravity="left"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.514"
+        app:layout_constraintHorizontal_bias="0.135"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.023" />
+
+    <TextView
+        android:id="@+id/txLogOut"
+        android:layout_width="wrap_content"
+        android:layout_height="37dp"
+        android:gravity="center"
+        android:text="WYLOGUJ"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.952"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.022" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

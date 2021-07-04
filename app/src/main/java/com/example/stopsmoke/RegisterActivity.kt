@@ -30,50 +30,47 @@ class RegisterActivity : BaseActivity() {
         inputPassword = findViewById(R.id.inputPassword2)
         inputRepPass = findViewById(R.id.inputPassword2repeat)
 
-        registerButton?.setOnClickListener{
+        registerButton?.setOnClickListener {
             //validateRegisterDetails()
             registerUser()
 
         }
-
     }
-
-
 
     private fun validateRegisterDetails(): Boolean {
 
-        return when{
-            TextUtils.isEmpty(inputEmail?.text.toString().trim{ it <= ' '}) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_email),true)
-                false
-            }
-            TextUtils.isEmpty(inputName?.text.toString().trim{ it <= ' '}) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_name),true)
+        return when {
+            TextUtils.isEmpty(inputEmail?.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false
             }
 
-            TextUtils.isEmpty(inputPassword?.text.toString().trim{ it <= ' '}) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password),true)
+            TextUtils.isEmpty(inputName?.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_name), true)
                 false
             }
 
-            TextUtils.isEmpty(inputRepPass?.text.toString().trim{ it <= ' '}) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_reppassword),true)
+            TextUtils.isEmpty(inputPassword?.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password), true)
                 false
             }
 
-            inputPassword?.text.toString().trim {it <= ' '} != inputRepPass?.text.toString().trim{it <= ' '} -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_password_mismatch),true)
+            TextUtils.isEmpty(inputRepPass?.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_reppassword), true)
                 false
             }
 
+            inputPassword?.text.toString().trim { it <= ' ' } != inputRepPass?.text.toString()
+                .trim { it <= ' ' } -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_password_mismatch), true)
+                false
+            }
 
             else -> {
                 //showErrorSnackBar("Your details are valid",false)
                 true
             }
         }
-
 
     }
 
@@ -82,49 +79,42 @@ class RegisterActivity : BaseActivity() {
         startActivity(intent)
         finish()
     }
-    private fun registerUser(){
-        if (validateRegisterDetails()){
-            val login: String = inputEmail?.text.toString().trim() {it <= ' '}
-            val password: String = inputPassword?.text.toString().trim() {it <= ' '}
 
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(login,password).addOnCompleteListener(
-                OnCompleteListener <AuthResult>{task ->
-                    if(task.isSuccessful){
-                        val firebaseUser: FirebaseUser = task.result!!.user!!
+    private fun registerUser() {
+        if (validateRegisterDetails()) {
+            val login: String = inputEmail?.text.toString().trim() { it <= ' ' }
+            val password: String = inputPassword?.text.toString().trim() { it <= ' ' }
 
-                        val user = User(
-                            firebaseUser.uid,
-                            inputName?.text.toString().trim() {it <= ' '},
-                            inputEmail?.text.toString().trim() {it <= ' '}
-                        )
+            FirebaseAuth.getInstance().createUserWithEmailAndPassword(login, password)
+                .addOnCompleteListener(
+                    OnCompleteListener<AuthResult> { task ->
+                        if (task.isSuccessful) {
+                            val firebaseUser: FirebaseUser = task.result!!.user!!
 
+                            val user = User(
+                                firebaseUser.uid,
+                                inputName?.text.toString().trim() { it <= ' ' },
+                                inputEmail?.text.toString().trim() { it <= ' ' }
+                            )
 
-                        FireStoreClass().registerUser(this,user)
+                            FireStoreClass().registerUser(this, user)
 
-                        //showErrorSnackBar("You are re gistered successfully. Your user id is ${firebaseUser.uid}",false)
-                        //FirebaseAuth.getInstance().signOut()
-                        finish()
-                        openActivityDaneDoRejestracji()
+                            //showErrorSnackBar("You are registered successfully. Your user id is ${firebaseUser.uid}",false)
+                            //FirebaseAuth.getInstance().signOut()
+                            finish()
+                            openActivityDaneDoRejestracji()
 
-
-                    } else{
-                        showErrorSnackBar(task.exception!!.message.toString(),true)
+                        } else {
+                            showErrorSnackBar(task.exception!!.message.toString(), true)
+                        }
                     }
-
-                }
-            )
-
+                )
         }
     }
 
-
-
-    private fun openActivityDaneDoRejestracji(){
+    private fun openActivityDaneDoRejestracji() {
         val intent = Intent(this, DaneDoRejestracji::class.java)
         startActivity(intent)
     }
-
-
-
 
 }

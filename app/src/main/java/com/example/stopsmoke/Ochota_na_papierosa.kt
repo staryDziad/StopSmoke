@@ -23,25 +23,19 @@ class Ochota_na_papierosa : AppCompatActivity() {
         btGif3 = findViewById(R.id.btGif3)
         mDialog = Dialog(this)
 
-        btGif1?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.papieros_gif_1)
-                mDialog!!.show()
-            }
-        })
+        btGif1?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.papieros_gif_1)
+            mDialog!!.show()
+        }
 
-        btGif2?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.papieros_gif_2)
-                mDialog!!.show()
-            }
-        })
+        btGif2?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.papieros_gif_2)
+            mDialog!!.show()
+        }
 
-        btGif3?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.papieros_gif_3)
-                mDialog!!.show()
-            }
-        })
+        btGif3?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.papieros_gif_3)
+            mDialog!!.show()
+        }
     }
 }

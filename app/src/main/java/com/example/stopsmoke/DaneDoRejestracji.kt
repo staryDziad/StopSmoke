@@ -17,7 +17,6 @@ class DaneDoRejestracji : AppCompatActivity() {
     private var edCenaPapierosow: EditText? = null
     private var kalendarz: DatePicker? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dane_do_rejestracji)
@@ -28,11 +27,13 @@ class DaneDoRejestracji : AppCompatActivity() {
         edCenaPapierosow = findViewById(R.id.edCenaPapierosow)
         kalendarz = findViewById(R.id.kalendarz)
 
-        var tmpStamp : Timestamp? = null
+        var tmpStamp: Timestamp? = null
 
         val today = Calendar.getInstance()
-        kalendarz?.init(today.get(Calendar.YEAR), today.get(Calendar.MONTH),
-            today.get(Calendar.DAY_OF_MONTH)) { view, year, month, day ->
+        kalendarz?.init(
+            today.get(Calendar.YEAR), today.get(Calendar.MONTH),
+            today.get(Calendar.DAY_OF_MONTH)
+        ) { view, year, month, day ->
 
             val c = Calendar.getInstance()
             c.set(year, month, day)
@@ -40,71 +41,57 @@ class DaneDoRejestracji : AppCompatActivity() {
             tmpStamp = Timestamp(c.time)
         }
 
-
-        btZapis?.setOnClickListener(object: View.OnClickListener{
-            override fun onClick(v : View){
-                if(edCenaPapierosow?.text.toString().isNotEmpty() && edLiczbaPapierosow?.text.toString().isNotEmpty() && tmpStamp != null){
-                    updateLiczbaPapierosow()
-                    updateCena()
-                    updateData(tmpStamp!!)
-                    finish()
-                    goToLogin()
-                    tostSukces()
-                }
-                else{
-                    tost()
-                }
-
-
+        btZapis?.setOnClickListener {
+            if (edCenaPapierosow?.text.toString()
+                    .isNotEmpty() && edLiczbaPapierosow?.text.toString()
+                    .isNotEmpty() && tmpStamp != null
+            ) {
+                updateLiczbaPapierosow()
+                updateCena()
+                updateData(tmpStamp!!)
+                finish()
+                goToLogin()
+                tostSukces()
+            } else {
+                tost()
             }
-        })
-
-
-
-
+        }
     }
 
-    private fun openActivityMain(){
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent)
-    }
-
-    private fun updateData(timestamp: Timestamp){
-
-        if(timestamp != null) {
+    private fun updateData(timestamp: Timestamp) {
+        if (timestamp != null) {
             FireStoreClass().updateData(this, timestamp)
-        }else {
+        } else {
             FireStoreClass().updateData(this, Timestamp(0, 0))
         }
     }
 
-    private fun updateLiczbaPapierosow(){
+    private fun updateLiczbaPapierosow() {
         val liczba = edLiczbaPapierosow?.text.toString().toInt()
 
-        if(liczba != null) {
+        if (liczba != null) {
             FireStoreClass().updateUserIloscPapierosow(this, liczba)
-        }else {
+        } else {
             FireStoreClass().updateUserIloscPapierosow(this, 0)
         }
     }
 
-    private fun updateCena(){
+    private fun updateCena() {
         val cena = edLiczbaPapierosow?.text.toString().toDouble()
 
-        if(cena != null) {
+        if (cena != null) {
             FireStoreClass().updateUserCenaPapierosow(this, cena)
-        }else {
+        } else {
             FireStoreClass().updateUserCenaPapierosow(this, 0.0)
         }
     }
 
-
-    private fun goToLogin(){
+    private fun goToLogin() {
         val intent = Intent(this, LoginActivity::class.java)
         startActivity(intent)
     }
 
-    private fun tost(){
+    private fun tost() {
         Toast.makeText(
             this,
             "Uzupełnij wszystkie pola",
@@ -112,13 +99,13 @@ class DaneDoRejestracji : AppCompatActivity() {
         )
             .show()
     }
-    fun tostSukces(){
 
+    fun tostSukces() {
         Toast.makeText(
             this,
             resources.getString(R.string.register_success),
             Toast.LENGTH_SHORT
         ).show()
-
     }
+
 }

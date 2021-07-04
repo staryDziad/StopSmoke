@@ -1,6 +1,5 @@
 package com.example.stopsmoke
 
-
 import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
@@ -26,7 +25,7 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
     private var inputEmail: EditText? = null
     private var inputPassword: EditText? = null
     private var loginButton: Button? = null
-    private lateinit var database : DatabaseReference
+    //private lateinit var database: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -36,21 +35,17 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         inputPassword = findViewById(R.id.inputPassword2)
         loginButton = findViewById(R.id.loginButton)
 
-
-        loginButton?.setOnClickListener{
+        loginButton?.setOnClickListener {
             //validateRegisterDetails()
             logInRegisteredUser()
-
         }
-
     }
 
-
     override fun onClick(view: View?) {
-        if(view !=null){
-            when (view.id){
+        if (view != null) {
+            when (view.id) {
 
-                R.id.textView4 ->{
+                R.id.textView4 -> {
                     val intent = Intent(this, RegisterActivity::class.java)
                     startActivity(intent)
                 }
@@ -58,19 +53,16 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         }
     }
 
-
-
-
     private fun validateLoginDetails(): Boolean {
 
-        return when{
-            TextUtils.isEmpty(inputEmail?.text.toString().trim{ it <= ' '}) -> {
+        return when {
+            TextUtils.isEmpty(inputEmail?.text.toString().trim { it <= ' ' }) -> {
                 showErrorSnackBar(resources.getString(R.string.err_msg_enter_email), true)
                 false
             }
 
-            TextUtils.isEmpty(inputPassword?.text.toString().trim{ it <= ' '}) -> {
-                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password),true)
+            TextUtils.isEmpty(inputPassword?.text.toString().trim { it <= ' ' }) -> {
+                showErrorSnackBar(resources.getString(R.string.err_msg_enter_password), true)
                 false
             }
 
@@ -79,35 +71,31 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
                 true
             }
         }
-
-
     }
 
-    private fun logInRegisteredUser(){
+    private fun logInRegisteredUser() {
 
-
-        if(validateLoginDetails()){
-            val email = inputEmail?.text.toString().trim(){ it<= ' '}
-            val password = inputPassword?.text.toString().trim(){ it<= ' '}
+        if (validateLoginDetails()) {
+            val email = inputEmail?.text.toString().trim() { it <= ' ' }
+            val password = inputPassword?.text.toString().trim() { it <= ' ' }
 
             //Log-in using FirebaseAuth
 
-            FirebaseAuth.getInstance().signInWithEmailAndPassword(email,password)
-                .addOnCompleteListener{task ->
+            FirebaseAuth.getInstance().signInWithEmailAndPassword(email, password)
+                .addOnCompleteListener { task ->
 
-                    if(task.isSuccessful){
+                    if (task.isSuccessful) {
                         FireStoreClass().getUserDetails(this)
-                        showErrorSnackBar("You are logged in successfully.", false)
+                        showErrorSnackBar("Zalogowano pomyślnie", false)
                         goToMainActivity()
                         finish()
 
-                    } else{
-                        showErrorSnackBar(task.exception!!.message.toString(),true)
+                    } else {
+                        showErrorSnackBar(task.exception!!.message.toString(), true)
                     }
                 }
         }
     }
-
 
     open fun goToMainActivity() {
 
@@ -119,15 +107,13 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
         startActivity(intent)
     }
 
-
-    fun userLoggedInSuccess(user: User){
+    fun userLoggedInSuccess(user: User) {
 
         Log.i("Email: ", user.email)
         Log.i("name: ", user.name)
         Log.i("liczba: ", user.iloscPapierosow.toString())
         Log.i("cena: ", user.cenaPaczki.toString())
         Log.i("data: ", user.dataOstatniego.toString())
-
 
         goToMainActivity()
         finish()
