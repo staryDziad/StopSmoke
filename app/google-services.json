@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "451958950015",
+    "project_id": "stopsmoke-11ac3",
+    "storage_bucket": "stopsmoke-11ac3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:451958950015:android:4217d5ba0fddfc9d17d74a",
+        "android_client_info": {
+          "package_name": "com.example.stopsmoke"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "451958950015-tkqhec67a3pfjttoeuv14tvj48vbrdsn.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDJVZsJLAApLuOAYmJ-yUje_nuzjgER9u4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "451958950015-tkqhec67a3pfjttoeuv14tvj48vbrdsn.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
