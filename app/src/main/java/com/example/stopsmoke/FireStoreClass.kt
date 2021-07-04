@@ -62,6 +62,14 @@ class FireStoreClass {
                     is Zdrowie -> {
                         activity.showUserInfo(user)
                     }
+
+                    is ZdrowieDodajWynik -> {
+                        activity.showUserInfo(user)
+                    }
+
+                    is Zerowanie -> {
+                    //    activity.showUserInfo(user)
+                    }
                 }
             }
     }
@@ -87,10 +95,10 @@ class FireStoreClass {
             .update("dataOstatniego", data)
     }
 
-    fun updateWykresWagi(activity: Activity, mapa: Map<String, Float>) {
+    fun updateWykresWagi(activity: Activity, mapa: Map<String, Double>?) {
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserID())
-            .update("dataOstatniego", mapa)
+            .update("wykresWagi", mapa)
     }
 
     fun updateCel1(activity: Activity, cel1: String) {

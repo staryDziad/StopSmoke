@@ -21,8 +21,6 @@ class Oszczedzaj : AppCompatActivity() {
     private var progr = 0
 
     private var btProba: Button? = null
-    private var cel1_popup: EditText? = null
-    private var cena1_popup: EditText? = null
     private var btOk: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -31,8 +29,6 @@ class Oszczedzaj : AppCompatActivity() {
         btCele = findViewById(R.id.btCele)
         txCel1 = findViewById(R.id.txCel1)
         btProba = findViewById(R.id.btProba)
-        cel1_popup = findViewById(R.id.cel1_popup)
-        //cena1_popup = findViewById(R.id.cel1_popup)
         btOk = findViewById(R.id.btOk)
 
         FireStoreClass().getUserDetails(this)
@@ -133,7 +129,6 @@ class Oszczedzaj : AppCompatActivity() {
                 FireStoreClass().updateCel1(this, "Nie wybrano celu")
             }
         }
-
     }
 
     fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(

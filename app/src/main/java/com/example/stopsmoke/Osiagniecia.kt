@@ -189,12 +189,19 @@ class Osiagniecia : AppCompatActivity() {
             imMedalBlack1?.visibility = GONE
             imMedal9Miesiecy?.visibility = VISIBLE
         } else if (dniBezPalenia >= 364) {
+            imMedalBlack3?.visibility = GONE
+            imMedalTydzien?.visibility = VISIBLE
+            imMedalBlack2?.visibility = GONE
+            imMedal3Miesiace?.visibility = VISIBLE
+            imMedalBlack1?.visibility = GONE
+            imMedal9Miesiecy?.visibility = VISIBLE
             imBlackPuchar3?.visibility = GONE
             imPucharMiesiac?.visibility = VISIBLE
             imBlackPuchar2?.visibility = GONE
             imPucharPolRoku?.visibility = VISIBLE
             imBlackPuchar1?.visibility = GONE
             imPucharRok?.visibility = VISIBLE
+
         }
 
     }
