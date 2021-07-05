@@ -7,6 +7,10 @@ import android.view.View
 import android.widget.*
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import java.time.Duration
+import java.time.Instant
+import java.time.LocalDateTime
+import java.time.ZoneId
 import java.util.*
 
 class DaneDoRejestracji : AppCompatActivity() {
@@ -37,14 +41,24 @@ class DaneDoRejestracji : AppCompatActivity() {
 
             val c = Calendar.getInstance()
             c.set(year, month, day)
-
+           /* if(c <= today){
+                tmpStamp = Timestamp(c.time)
+            }else{
+                tostZlyDzien()
+            }*/
             tmpStamp = Timestamp(c.time)
+
         }
 
         btZapis?.setOnClickListener {
+
+            val today = LocalDateTime.now()
+            val tmpPodany = tmpStamp?.toLocalDateTime()
+            val roznica = Duration.between(tmpPodany, today).toDays()
+
             if (edCenaPapierosow?.text.toString()
                     .isNotEmpty() && edLiczbaPapierosow?.text.toString()
-                    .isNotEmpty() && tmpStamp != null
+                    .isNotEmpty() && tmpStamp != null && roznica >= 0
             ) {
                 updateLiczbaPapierosow()
                 updateCena()
@@ -94,7 +108,7 @@ class DaneDoRejestracji : AppCompatActivity() {
     private fun tost() {
         Toast.makeText(
             this,
-            "Uzupełnij wszystkie pola",
+            "Uzupełnij poprawnie wszystkie pola",
             Toast.LENGTH_LONG
         )
             .show()
@@ -107,5 +121,10 @@ class DaneDoRejestracji : AppCompatActivity() {
             Toast.LENGTH_SHORT
         ).show()
     }
+
+
+    fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
+        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone
+    )
 
 }

@@ -6,22 +6,15 @@
     android:orientation="vertical"
     android:padding="10dp">
 
-
-    <EditText
-        android:id="@+id/edCel1Nazwa"
+    <TextView
+        android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Podaj swój cel"
-        android:inputType="textPersonName" />
+        android:text="Zacznij oszczędzać! \n Ustaw sobie konkretny cel i zobacz swój postep \n Im dłużej nie palisz, tym szybciej zakupisz swój wymarzony cel!"
+        android:gravity="center"
+        android:textSize="20dp"
+        android:textStyle="bold"/>
 
-    <EditText
-        android:id="@+id/edCel1Cena"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Cena [zł]"
-        android:inputType="numberDecimal" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -29,18 +22,11 @@
         android:layout_gravity="center">
 
         <Button
-            android:id="@+id/btDodajCel1"
+            android:id="@+id/btZamknijOkno"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Dodaj cel" />
-
+            android:text="Ok" />
     </LinearLayout>
-
-    <Button
-        android:id="@+id/btNiewazne"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Button" />
 
 
 </LinearLayout>
