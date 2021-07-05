@@ -32,7 +32,14 @@
             android:id="@+id/btZatwierdzDoWykresu"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Ok" />
+            android:text="Zapisz" />
+
+        <Button
+            android:id="@+id/btWyjscie"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Anuluj"
+            android:layout_marginLeft="50dp"/>
     </LinearLayout>
 
 

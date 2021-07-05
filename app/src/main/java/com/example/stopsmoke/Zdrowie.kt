@@ -93,6 +93,7 @@ class Zdrowie : AppCompatActivity() {
             val btOk = mDialogView.findViewById<Button>(R.id.btZatwierdzDoWykresu)
             val dataWykres = mDialogView.findViewById<EditText>(R.id.edDataDoWykresu)
             val waga = mDialogView.findViewById<EditText>(R.id.edWagaDoWykresu)
+            val btAnuluj = mDialogView.findViewById<Button>(R.id.btWyjscie)
 
             val today = LocalDate.now()
             dataWykres?.setText(today.toString())
@@ -101,7 +102,7 @@ class Zdrowie : AppCompatActivity() {
                 var wartoscWagi = 0.0
                 var data = ""
 
-                if (waga?.text.toString().isNotEmpty()) {
+               if (waga?.text.toString().isNotEmpty()) {
                     wartoscWagi = waga?.text.toString().toDouble()
                 }
 
@@ -109,10 +110,13 @@ class Zdrowie : AppCompatActivity() {
                     data = dataWykres?.text.toString()
                 }
 
-                mapaWagi?.set(data, wartoscWagi)
+               mapaWagi?.set(data, wartoscWagi)
 
-                FireStoreClass().updateWykresWagi(this, mapaWagi?.toMap())
+               FireStoreClass().updateWykresWagi(this, mapaWagi?.toMap())
 
+               mAlertDialog.dismiss()
+            }
+            btAnuluj.setOnClickListener {
                 mAlertDialog.dismiss()
             }
 
@@ -243,6 +247,7 @@ class Zdrowie : AppCompatActivity() {
         val intentA = Intent(this, ZdrowieWykres::class.java)
         startActivity(intentA)
     }
+
 
 
 }
