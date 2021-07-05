@@ -4,30 +4,30 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.LayoutInflater
-import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import com.google.firebase.Timestamp
-import java.time.Duration
-import java.time.Instant
-import java.time.LocalDateTime
-import java.time.ZoneId
+import java.time.*
 
 class Zdrowie : AppCompatActivity() {
 
-    private var btDodajWynik: Button? = null
+    private var btKontrolujMase: Button? = null
     private var edNikotyna: TextView? = null
     private var edCzas: TextView? = null
+    private var btDodajPop: Button? = null
+    private var mapaWagi: MutableMap<String, Double>? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_zdrowie)
-        btDodajWynik = findViewById(R.id.btDodajWynik)
-        val btBMI = findViewById<ImageButton>(R.id.btBMI)
+        btKontrolujMase = findViewById(R.id.btKontrolujMase)
         edNikotyna = findViewById(R.id.edNikotyna)
         edCzas = findViewById(R.id.edZyskanyCzas)
+        btDodajPop = findViewById(R.id.BtDodajPop)
+
+        val btBMI = findViewById<ImageButton>(R.id.btBMI)
 
         FireStoreClass().getUserDetails(this@Zdrowie)
 
@@ -39,7 +39,7 @@ class Zdrowie : AppCompatActivity() {
                 .setTitle("BMI")
 
             val mAlertDialog = mBuilder.show()
-            val btLicz = mDialogView.findViewById<Button>(R.id.btCalcBMI)
+            val btLicz = mDialogView.findViewById<Button>(R.id.btLicz)
             val btWyjdz = mDialogView.findViewById<Button>(R.id.btWyjdz)
             val waga = mDialogView.findViewById<EditText>(R.id.edNr1)
             val wzrost = mDialogView.findViewById<EditText>(R.id.edNr2)
@@ -74,7 +74,6 @@ class Zdrowie : AppCompatActivity() {
                 } else {
                     tost()
                 }
-
             }
 
             btWyjdz.setOnClickListener {
@@ -82,7 +81,44 @@ class Zdrowie : AppCompatActivity() {
             }
         }
 
-        btDodajWynik?.setOnClickListener { openActivityDodajWynik() }
+
+        btDodajPop?.setOnClickListener {
+            val mDialogView =
+                LayoutInflater.from(this@Zdrowie).inflate(R.layout.waga_popup, null)
+            val mBuilder = AlertDialog.Builder(this@Zdrowie)
+                .setView(mDialogView)
+                .setTitle("Dodaj pomiar")
+
+            val mAlertDialog = mBuilder.show()
+            val btOk = mDialogView.findViewById<Button>(R.id.btZatwierdzDoWykresu)
+            val dataWykres = mDialogView.findViewById<EditText>(R.id.edDataDoWykresu)
+            val waga = mDialogView.findViewById<EditText>(R.id.edWagaDoWykresu)
+
+            val today = LocalDate.now()
+            dataWykres?.setText(today.toString())
+
+            btOk.setOnClickListener {
+                var wartoscWagi = 0.0
+                var data = ""
+
+                if (waga?.text.toString().isNotEmpty()) {
+                    wartoscWagi = waga?.text.toString().toDouble()
+                }
+
+                if (dataWykres?.text.toString().isNotEmpty()) {
+                    data = dataWykres?.text.toString()
+                }
+
+                mapaWagi?.set(data, wartoscWagi)
+
+                FireStoreClass().updateWykresWagi(this, mapaWagi?.toMap())
+
+                mAlertDialog.dismiss()
+            }
+
+        }
+
+        btKontrolujMase?.setOnClickListener { openActivityWykres() }
     }
 
     fun showUserInfo(user: User) {
@@ -98,6 +134,9 @@ class Zdrowie : AppCompatActivity() {
         var czasZaoszczedzony = 28.57 * iloscPapierosowDziennie * dniBezPalenia
         var czas = przeliczeniaCzas(czasZaoszczedzony)
         edCzas?.text = czas
+
+
+        mapaWagi = user.wykresWagi?.toMutableMap()
     }
 
     fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
@@ -200,9 +239,10 @@ class Zdrowie : AppCompatActivity() {
         return tekst1
     }
 
-    private fun openActivityDodajWynik() {
-        val intentA = Intent(this, ZdrowieDodajWynik::class.java)
+    private fun openActivityWykres() {
+        val intentA = Intent(this, ZdrowieWykres::class.java)
         startActivity(intentA)
     }
+
 
 }

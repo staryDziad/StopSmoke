@@ -8,54 +8,49 @@
 
 
     <ImageView
-        android:id="@+id/imBlackPuchar3"
-        android:layout_width="140dp"
-        android:layout_height="170dp"
-        android:layout_alignBottom="@+id/imPodium"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentEnd="true"
-        android:layout_marginTop="256dp"
-        android:layout_marginEnd="62dp"
-        android:layout_marginBottom="197dp"
-        app:srcCompat="@drawable/black" />
-
-    <ImageView
-        android:id="@+id/imBlackPuchar2"
-        android:layout_width="140dp"
-        android:layout_height="170dp"
-        android:layout_alignBottom="@+id/imPodium"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginStart="63dp"
-        android:layout_marginTop="251dp"
-        android:layout_marginBottom="202dp"
-        app:srcCompat="@drawable/black" />
-
-    <ImageView
         android:id="@+id/imPodium"
-        android:layout_width="402dp"
-        android:layout_height="193dp"
-        android:layout_alignParentStart="true"
+        android:layout_width="395dp"
+        android:layout_height="257dp"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
-        android:layout_marginStart="3dp"
-        android:layout_marginBottom="159dp"
+        android:layout_marginBottom="184dp"
         app:srcCompat="@drawable/podium" />
 
     <ImageView
         android:id="@+id/imBlackPuchar1"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="170dp"
-        android:layout_alignBottom="@+id/imPodium"
         android:layout_alignParentTop="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="242dp"
-        android:layout_marginBottom="211dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="13dp"
+        android:layout_toStartOf="@+id/imBlackPuchar3"
+        app:srcCompat="@drawable/black" />
+
+    <ImageView
+        android:id="@+id/imBlackPuchar2"
+        android:layout_width="120dp"
+        android:layout_height="170dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="84dp"
+        android:layout_marginEnd="14dp"
+        android:layout_toStartOf="@+id/imBlackPuchar1"
+        app:srcCompat="@drawable/black" />
+
+    <ImageView
+        android:id="@+id/imBlackPuchar3"
+        android:layout_width="120dp"
+        android:layout_height="170dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="82dp"
+        android:layout_marginEnd="12dp"
         app:srcCompat="@drawable/black" />
 
     <ImageView
         android:id="@+id/imPucharRok"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="170dp"
         android:visibility="gone"
         android:layout_alignBottom="@+id/imPodium"
@@ -67,7 +62,7 @@
 
     <ImageView
         android:id="@+id/imPucharPolRoku"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="170dp"
         android:visibility="gone"
         android:layout_alignBottom="@+id/imPodium"
@@ -82,7 +77,7 @@
 
     <ImageView
         android:id="@+id/imPucharMiesiac"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="170dp"
         android:visibility="gone"
         android:layout_alignBottom="@+id/imPodium"
@@ -95,7 +90,7 @@
 
     <ImageView
         android:id="@+id/imMedalTydzien"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="160dp"
         android:visibility="gone"
         android:layout_alignParentEnd="true"
@@ -106,7 +101,7 @@
 
     <ImageView
         android:id="@+id/imMedal3Miesiace"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="160dp"
         android:visibility="gone"
         android:layout_alignParentStart="true"
@@ -118,7 +113,7 @@
 
     <ImageView
         android:id="@+id/imMedal9Miesiecy"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="160dp"
         android:visibility="gone"
         android:layout_alignParentStart="true"
@@ -128,40 +123,34 @@
 
     <ImageView
         android:id="@+id/imMedalBlack3"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="160dp"
-        android:layout_alignParentStart="true"
         android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_marginStart="269dp"
-        android:layout_marginEnd="2dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="11dp"
+        android:layout_marginBottom="10dp"
         app:srcCompat="@drawable/mblack" />
 
     <ImageView
         android:id="@+id/imMedalBlack2"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="160dp"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="130dp"
-        android:layout_marginEnd="139dp"
-        android:layout_marginBottom="13dp"
+        android:layout_marginEnd="14dp"
+        android:layout_marginBottom="11dp"
+        android:layout_toStartOf="@+id/imMedalBlack3"
         app:srcCompat="@drawable/mblack" />
 
     <ImageView
         android:id="@+id/imMedalBlack1"
-        android:layout_width="140dp"
+        android:layout_width="120dp"
         android:layout_height="160dp"
         android:layout_alignParentStart="true"
-        android:layout_alignParentEnd="true"
         android:layout_alignParentBottom="true"
-        android:layout_centerHorizontal="true"
-        android:layout_marginStart="-1dp"
-        android:layout_marginEnd="270dp"
+        android:layout_marginStart="6dp"
+        android:layout_marginEnd="20dp"
         android:layout_marginBottom="11dp"
+        android:layout_toStartOf="@+id/imMedalBlack2"
         app:srcCompat="@drawable/mblack" />
 
     <ImageView

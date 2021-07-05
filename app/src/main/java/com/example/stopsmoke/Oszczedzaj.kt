@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.*
@@ -74,6 +76,28 @@ class Oszczedzaj : AppCompatActivity() {
         val cenaPaczki = user.cenaPaczki
         val zaoszczedziles = cenaPaczki*dniBezPalenia.toDouble()
 
+        /*val handler = Handler(Looper.getMainLooper())
+        handler.postDelayed({
+            val cena1 = user.cena1
+            val cel1 = user.cel1
+
+            var x = (zaoszczedziles/cena1)*100
+            var x1 = x.toInt()
+
+            if(cena1 == 0.0){
+                progr = 0
+                txCel1?.text = "Nie podano celu"
+
+            }else if(x1 in 1..99){
+                progr = x1
+                txCel1?.text = cel1
+            }else{
+                progr = 100
+                txCel1?.text = "$cel1 osiągnięty"
+            }
+            updateProgressBar()
+
+        }, 1000)*/
         val cena1 = user.cena1
         val cel1 = user.cel1
 
@@ -92,6 +116,7 @@ class Oszczedzaj : AppCompatActivity() {
             txCel1?.text = "$cel1 osiągnięty"
         }
         updateProgressBar()
+
     }
 
     private fun openActivityCele(){

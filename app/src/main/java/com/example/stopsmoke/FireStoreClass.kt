@@ -63,10 +63,6 @@ class FireStoreClass {
                         activity.showUserInfo(user)
                     }
 
-                    is ZdrowieDodajWynik -> {
-                        activity.showUserInfo(user)
-                    }
-
                     is Zerowanie -> {
                     //    activity.showUserInfo(user)
                     }

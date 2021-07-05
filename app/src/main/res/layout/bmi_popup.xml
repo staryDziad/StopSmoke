@@ -29,7 +29,7 @@
         android:layout_gravity="center">
 
         <Button
-            android:id="@+id/btCalcBMI"
+            android:id="@+id/btLicz"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Policz BMI" />
