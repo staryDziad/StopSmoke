@@ -28,7 +28,6 @@ class Oszczedzaj : AppCompatActivity() {
     private var imHelp3: ImageView? = null
     private var txPowrot: TextView? = null
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_oszczedzaj)
@@ -38,34 +37,7 @@ class Oszczedzaj : AppCompatActivity() {
         imHelp3 = findViewById(R.id.imHelp3)
         txPowrot = findViewById(R.id.txPowrot)
 
-
         FireStoreClass().getUserDetails(this)
-
-        /*btProba?.setOnClickListener {
-            val mDialogView =
-                LayoutInflater.from(this@Oszczedzaj).inflate(R.layout.cel1_popup, null)
-            val mBuilder = AlertDialog.Builder(this@Oszczedzaj)
-                .setView(mDialogView)
-                .setTitle("Cel 1")
-
-            val mAlertDialog = mBuilder.show()
-            val btZatwierdz = mDialogView.findViewById<Button>(R.id.btDodajCel1)
-            val cel1 = mDialogView.findViewById<EditText>(R.id.edCel1Nazwa)
-            val cena1 = mDialogView.findViewById<EditText>(R.id.edCel1Cena)
-
-            val btNiewazna = mDialogView.findViewById<Button>(R.id.btNiewazne)
-            FireStoreClass().getUserDetails(this@Oszczedzaj)
-
-            btZatwierdz.setOnClickListener {
-                updateCel1(cel1)
-                updateCena1(cena1)
-                mAlertDialog.dismiss()
-            }
-
-            btNiewazna.setOnClickListener {
-                mAlertDialog.dismiss()
-            }
-        }*/
 
         imHelp3?.setOnClickListener {
             val mDialogView =
@@ -77,12 +49,11 @@ class Oszczedzaj : AppCompatActivity() {
             val mAlertDialog = mBuilder.show()
             val btOk = mAlertDialog.findViewById<Button>(R.id.btZamknijOkno)
             btOk?.setOnClickListener { mAlertDialog.dismiss() }
-
         }
-        btCele?.setOnClickListener{ openActivityCele() }
-        btZmienCel?.setOnClickListener{ openActivityCele() }
-        txPowrot?.setOnClickListener{ openActivityMain() }
 
+        btCele?.setOnClickListener { openActivityCele() }
+        btZmienCel?.setOnClickListener { openActivityCele() }
+        txPowrot?.setOnClickListener { openActivityMain() }
     }
 
     @SuppressLint("SetTextI18n")
@@ -91,38 +62,38 @@ class Oszczedzaj : AppCompatActivity() {
         val ostatniPapieros = user.dataOstatniego.toLocalDateTime()
         val dniBezPalenia = Duration.between(ostatniPapieros, today).toDays()
         val cenaPaczki = user.cenaPaczki
-        val zaoszczedziles = cenaPaczki*dniBezPalenia.toDouble()
+        val zaoszczedziles = cenaPaczki * dniBezPalenia.toDouble()
 
         val cena1 = user.cena1
         val cel1 = user.cel1
 
-        var x = (zaoszczedziles/cena1)*100
+        var x = (zaoszczedziles / cena1) * 100
         var x1 = x.toInt()
 
-        if(cena1 == 0.0){
+        if (cena1 == 0.0) {
             progr = 0
             txCel1?.text = "Nie podano celu"
 
-        }else if(x1 in 0..99){
+        } else if (x1 in 0..99) {
             progr = x1
             txCel1?.text = cel1
             btCele?.visibility = GONE
             btZmienCel?.visibility = VISIBLE
-        }else{
+        } else {
             progr = 100
             txCel1?.text = "Cel: $cel1 \n osiągnięty!"
             btCele?.visibility = GONE
             btZmienCel?.visibility = VISIBLE
         }
         updateProgressBar()
-
     }
 
-    private fun openActivityCele(){
+    private fun openActivityCele() {
         val intent = Intent(this, OszczedzajCele::class.java)
         startActivity(intent)
     }
-    private fun openActivityMain(){
+
+    private fun openActivityMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
     }
@@ -135,7 +106,7 @@ class Oszczedzaj : AppCompatActivity() {
         text_view_progress.text = "$progr%"
     }
 
-
     fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
-        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone)
+        Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone
+    )
 }

@@ -62,7 +62,6 @@ class FireStoreClass {
                     is Zdrowie -> {
                         activity.showUserInfo(user)
                     }
-
                     is Zerowanie -> {
                     //    activity.showUserInfo(user)
                     }
@@ -104,39 +103,11 @@ class FireStoreClass {
             .update("cel1", cel1)
     }
 
-    fun updateCel2(activity: Activity, cel2: String) {
-
-        mFireStore.collection(Constant.USERS)
-            .document(getCurrentUserID())
-            .update("cel2", cel2)
-    }
-
-    fun updateCel3(activity: Activity, cel3: String) {
-
-        mFireStore.collection(Constant.USERS)
-            .document(getCurrentUserID())
-            .update("cel3", cel3)
-    }
-
     fun updateCena1(activity: Activity, cena1: Double) {
 
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserID())
             .update("cena1", cena1)
-    }
-
-    fun updateCena2(activity: Activity, cena2: Double) {
-
-        mFireStore.collection(Constant.USERS)
-            .document(getCurrentUserID())
-            .update("cena2", cena2)
-    }
-
-    fun updateCena3(activity: Activity, cena3: Double) {
-
-        mFireStore.collection(Constant.USERS)
-            .document(getCurrentUserID())
-            .update("cena3", cena3)
     }
 
 }

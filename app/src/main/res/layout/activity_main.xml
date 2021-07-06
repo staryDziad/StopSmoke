@@ -94,7 +94,8 @@
         app:layout_constraintHorizontal_bias="0.542"
         app:layout_constraintStart_toEndOf="@+id/imPapieros"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.745" />
+        app:layout_constraintVertical_bias="0.745"
+        />
 
     <TextView
         android:id="@+id/txZaoszczedzilesX"

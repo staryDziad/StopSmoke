@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.os.Handler
 import android.text.TextUtils
 import android.util.Log
 import android.view.View
@@ -86,10 +87,11 @@ class LoginActivity : BaseActivity(), View.OnClickListener {
 
                     if (task.isSuccessful) {
                         FireStoreClass().getUserDetails(this)
+                        Handler().postDelayed({
+                        }, 1500)
                         showErrorSnackBar("Zalogowano pomyślnie", false)
-                        goToMainActivity()
-                        finish()
-
+                        //goToMainActivity()
+                        //finish()
                     } else {
                         showErrorSnackBar(task.exception!!.message.toString(), true)
                     }

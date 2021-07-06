@@ -9,21 +9,30 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.StopSmoke">
-        <activity android:name=".ZdrowieWykres"></activity>
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".BaseActivity" />
-        <activity android:name=".DaneDoRejestracji" />
-        <activity android:name=".MainActivity" />
-        <activity android:name=".ZdrowieDodajWynik" />
-        <activity android:name=".OszczedzajCele" />
-        <activity android:name=".Zerowanie" />
-        <activity android:name=".Zdrowie" />
-        <activity android:name=".Oszczedzaj" />
-        <activity android:name=".Osiagniecia" />
-        <activity android:name=".Ochota_na_papierosa" />
-        <activity android:name=".LoginActivity">
-            //tu bylo main activity, potem logowanie
-            //tu MainActivity
+        <activity android:name=".ZdrowieWykres"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".RegisterActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".BaseActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".DaneDoRejestracji"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".MainActivity"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".OszczedzajCele"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Zerowanie"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Zdrowie"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Oszczedzaj"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Osiagniecia"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".Ochota_na_papierosa"
+            android:screenOrientation="portrait"/>
+        <activity android:name=".LoginActivity"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

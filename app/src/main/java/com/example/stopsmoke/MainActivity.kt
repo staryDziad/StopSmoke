@@ -2,12 +2,19 @@ package com.example.stopsmoke
 
 import android.annotation.SuppressLint
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.View
 import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
+import androidx.core.text.bold
+import androidx.core.text.color
+import androidx.core.text.italic
+import com.google.common.base.Ascii.FF
+import com.google.common.io.Files.append
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
@@ -54,6 +61,7 @@ class MainActivity : AppCompatActivity() {
 
         txLogOut?.setOnClickListener {
             Firebase.auth.signOut()
+            finish()
 
             Toast.makeText(
                 this,
@@ -76,9 +84,15 @@ class MainActivity : AppCompatActivity() {
         val zaoszczedziles = cenaPaczki * dniBezPalenia.toDouble()
         val zaoszczedzilesPokaz = String.format("%.2f", zaoszczedziles)
         val uzytkownik = user.name
-        ileNiePalisz?.text = "Dni bez papierosa: \n $dniBezPalenia"
-        ileZaoszczedziles?.text = "Oszczędzasz: \n $zaoszczedzilesPokaz PLN"
+        //ileNiePalisz?.text = "Dni bez papierosa: \n $dniBezPalenia"
+        //ileZaoszczedziles?.text = "Oszczędzasz: \n $zaoszczedzilesPokaz PLN"
         powitanie?.text = "Witaj, $uzytkownik !"
+        ileNiePalisz?.text = SpannableStringBuilder()
+            .append("Dni bez papierosa: \n")
+            .color(Color.rgb(255, 0, 0)) { append(dniBezPalenia.toString()) }
+        ileZaoszczedziles?.text = SpannableStringBuilder()
+            .append("Oszczędzasz: \n")
+            .color(Color.rgb(255, 0, 0)) { append("$zaoszczedzilesPokaz PLN") }
     }
 
     private fun openActivityOchota() {

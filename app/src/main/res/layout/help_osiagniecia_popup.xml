@@ -10,10 +10,10 @@
         android:id="@+id/textView5"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Sprawdzaj swoje postępy przez zdobywane trofea \n Im dłużej nie palisz, tym więcej ich uzyskasz!"
         android:gravity="center"
-        android:textSize="20dp"
-        android:textStyle="bold"/>
+        android:text="Sprawdzaj swoje postępy przez zdobywane trofea \n Im dłużej nie palisz, tym więcej ich zyskasz!"
+        android:textSize="20sp"
+        android:textStyle="bold" />
     <LinearLayout
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

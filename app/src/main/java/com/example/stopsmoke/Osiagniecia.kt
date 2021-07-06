@@ -53,96 +53,72 @@ class Osiagniecia : AppCompatActivity() {
         mDialog = Dialog(this)
         imHelp = findViewById(R.id.imHelp)
 
-        imHelp?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                val mDialogView = LayoutInflater.from(this@Osiagniecia)
-                    .inflate(R.layout.help_osiagniecia_popup, null)
-                val mBuilder = AlertDialog.Builder(this@Osiagniecia)
-                    .setView(mDialogView)
-                    .setTitle("Twoje osiągnięcia")
+        imHelp?.setOnClickListener {
+            val mDialogView = LayoutInflater.from(this@Osiagniecia)
+                .inflate(R.layout.help_osiagniecia_popup, null)
+            val mBuilder = AlertDialog.Builder(this@Osiagniecia)
+                .setView(mDialogView)
+                .setTitle("Twoje osiągnięcia")
 
-                val mAlertDialog = mBuilder.show()
-                val btOk = mDialogView.findViewById<Button>(R.id.btOkHelp)
+            val mAlertDialog = mBuilder.show()
+            val btOk = mDialogView.findViewById<Button>(R.id.btOkHelp)
 
-                btOk.setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
+            btOk.setOnClickListener {
+                mAlertDialog.dismiss()
             }
-        })
+        }
 
-        imBlackPuchar1?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imBlackPuchar2?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imBlackPuchar3?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
+        imBlackPuchar1?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imBlackPuchar2?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imBlackPuchar3?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+            mDialog!!.show()
+        }
 
-        imPucharRok?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imPucharPolRoku?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imPucharMiesiac?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imMedalBlack1?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imMedalBlack2?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imMedalBlack3?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imMedalTydzien?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imMedal3Miesiace?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
-        imMedal9Miesiecy?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
-                mDialog!!.show()
-            }
-        })
+        imPucharRok?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imPucharPolRoku?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imPucharMiesiac?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+            mDialog!!.show()
+        }
+
+        imMedalBlack1?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imMedalBlack2?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imMedalBlack3?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_nie_osiagniety_cel)
+            mDialog!!.show()
+        }
+
+        imMedalTydzien?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imMedal3Miesiace?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+            mDialog!!.show()
+        }
+        imMedal9Miesiecy?.setOnClickListener {
+            mDialog!!.setContentView(R.layout.popup_osiagniety_cel)
+            mDialog!!.show()
+        }
 
         FireStoreClass().getUserDetails(this)
 
@@ -201,7 +177,6 @@ class Osiagniecia : AppCompatActivity() {
             imPucharPolRoku?.visibility = VISIBLE
             imBlackPuchar1?.visibility = GONE
             imPucharRok?.visibility = VISIBLE
-
         }
 
     }

@@ -41,11 +41,11 @@ class DaneDoRejestracji : AppCompatActivity() {
 
             val c = Calendar.getInstance()
             c.set(year, month, day)
-           /* if(c <= today){
-                tmpStamp = Timestamp(c.time)
-            }else{
-                tostZlyDzien()
-            }*/
+            /* if(c <= today){
+                 tmpStamp = Timestamp(c.time)
+             }else{
+                 tostZlyDzien()
+             }*/
             tmpStamp = Timestamp(c.time)
 
         }
@@ -118,10 +118,9 @@ class DaneDoRejestracji : AppCompatActivity() {
         Toast.makeText(
             this,
             resources.getString(R.string.register_success),
-            Toast.LENGTH_SHORT
+            Toast.LENGTH_LONG
         ).show()
     }
-
 
     fun Timestamp.toLocalDateTime(zone: ZoneId = ZoneId.systemDefault()) = LocalDateTime.ofInstant(
         Instant.ofEpochMilli(seconds * 1000 + nanoseconds / 1000000), zone

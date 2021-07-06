@@ -10,9 +10,9 @@
         android:id="@+id/textView6"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Zacznij oszczędzać! \n Ustaw sobie konkretny cel i zobacz swój postep \n Im dłużej nie palisz, tym szybciej zakupisz swój wymarzony cel!"
+        android:text="Zacznij oszczędzać! \n Ustaw konkretny cel i zobacz swój postep. \n Im dłużej nie palisz, tym szybciej zgromadzisz środki na wymarzony cel!"
         android:gravity="center"
-        android:textSize="20dp"
+        android:textSize="20sp"
         android:textStyle="bold"/>
 
     <LinearLayout

@@ -11,9 +11,5 @@ class User(
     val dataOstatniego: Timestamp = Timestamp.now(),
     val wykresWagi: Map<String, Double>? = emptyMap<String, Double>(),
     val cel1: String = "",
-    val cena1: Double = 0.0,
-    val cel2: String = "",
-    val cena2: Double = 0.0,
-    val cel3: String = "",
-    val cena3: Double = 0.0
+    val cena1: Double = 0.0
 )
