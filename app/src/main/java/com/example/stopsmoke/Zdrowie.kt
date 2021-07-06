@@ -1,13 +1,17 @@
 package com.example.stopsmoke
 
 import android.content.Intent
+import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.text.SpannableStringBuilder
 import android.view.LayoutInflater
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.text.color
+import com.google.common.io.Files.append
 import com.google.firebase.Timestamp
 import java.time.*
 
@@ -18,6 +22,7 @@ class Zdrowie : AppCompatActivity() {
     private var edCzas: TextView? = null
     private var btDodajPop: Button? = null
     private var mapaWagi: MutableMap<String, Double>? = null
+    private var imHelp4: ImageView? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,8 +31,21 @@ class Zdrowie : AppCompatActivity() {
         edNikotyna = findViewById(R.id.edNikotyna)
         edCzas = findViewById(R.id.edZyskanyCzas)
         btDodajPop = findViewById(R.id.BtDodajPop)
+        imHelp4 = findViewById(R.id.imHelp4)
 
         val btBMI = findViewById<ImageButton>(R.id.btBMI)
+
+        imHelp4?.setOnClickListener {
+            val mDialogView =
+                LayoutInflater.from(this@Zdrowie).inflate(R.layout.zdrowie_help, null)
+            val mBuilder = AlertDialog.Builder(this@Zdrowie)
+                .setView(mDialogView)
+                .setTitle("Twoje zdrowie")
+
+            val mAlertDialog = mBuilder.show()
+            val btOk = mAlertDialog.findViewById<Button>(R.id.btZamknijOkno)
+            btOk?.setOnClickListener { mAlertDialog.dismiss() }
+        }
 
         FireStoreClass().getUserDetails(this@Zdrowie)
 
@@ -68,7 +86,7 @@ class Zdrowie : AppCompatActivity() {
                     val dopWaga = dopuszczalnaWaga(n2)
                     val status = bmiStatusWartosc(wskaznikBMI)
                     val roznica = roznica(wskaznikBMI, n1, n2)
-                    txCokolwiek?.setText("# Wartość BMI: $bmiString \n # $status \n # $dopWaga \n # $roznica ")
+                    txCokolwiek?.setText("> Wartość BMI: $bmiString \n > $status \n > $dopWaga \n > $roznica ")
                     txCokolwiek.visibility = VISIBLE
                     btLicz.visibility = GONE
                 } else {
@@ -80,7 +98,6 @@ class Zdrowie : AppCompatActivity() {
                 mAlertDialog.dismiss()
             }
         }
-
 
         btDodajPop?.setOnClickListener {
             val mDialogView =
@@ -102,7 +119,7 @@ class Zdrowie : AppCompatActivity() {
                 var wartoscWagi = 0.0
                 var data = ""
 
-               if (waga?.text.toString().isNotEmpty()) {
+                if (waga?.text.toString().isNotEmpty()) {
                     wartoscWagi = waga?.text.toString().toDouble()
                 }
 
@@ -110,12 +127,13 @@ class Zdrowie : AppCompatActivity() {
                     data = dataWykres?.text.toString()
                 }
 
-               mapaWagi?.set(data, wartoscWagi)
+                mapaWagi?.set(data, wartoscWagi)
 
-               FireStoreClass().updateWykresWagi(this, mapaWagi?.toMap())
+                FireStoreClass().updateWykresWagi(this, mapaWagi?.toMap())
 
-               mAlertDialog.dismiss()
+                mAlertDialog.dismiss()
             }
+
             btAnuluj.setOnClickListener {
                 mAlertDialog.dismiss()
             }
@@ -138,7 +156,6 @@ class Zdrowie : AppCompatActivity() {
         var czasZaoszczedzony = 28.57 * iloscPapierosowDziennie * dniBezPalenia
         var czas = przeliczeniaCzas(czasZaoszczedzony)
         edCzas?.text = czas
-
 
         mapaWagi = user.wykresWagi?.toMutableMap()
     }
@@ -213,32 +230,49 @@ class Zdrowie : AppCompatActivity() {
             .show()
     }
 
-    private fun przeliczeniaNikotyna(nikotyna: Double): String {
-        var tekst = ""
+    private fun przeliczeniaNikotyna(nikotyna: Double): SpannableStringBuilder {
+        var tekst: SpannableStringBuilder
         if (nikotyna < 999) {
             var tekstFormat = String.format("%.2f", nikotyna)
-            tekst = "Zaoszczędzasz swemu organizmowi $tekstFormat mg nikotyny we krwi"
+            //tekst = "Zaoszczędzasz swemu organizmowi $tekstFormat mg nikotyny we krwi"
+            tekst = SpannableStringBuilder()
+                .append("Zaoszczędzasz swemu organizmowi ")
+                .color(Color.rgb(255, 0, 0)) { append("$tekstFormat mg nikotyny") }
+                .append(" we krwi")
         } else {
             var nik = nikotyna / 1000
             var tekstFormat = String.format("%.2f", nik)
-            tekst = "Zaoszczędzasz swemu organizmowi $tekstFormat g nikotyny we krwi"
+            //tekst = "Zaoszczędzasz swemu organizmowi $tekstFormat g nikotyny we krwi"
+            tekst = SpannableStringBuilder()
+                .append("Zaoszczędzasz swemu organizmowi ")
+                .color(Color.rgb(255, 0, 0)) { append("$tekstFormat g nikotyny") }
+                .append(" we krwi")
         }
         return tekst
     }
 
-    private fun przeliczeniaCzas(czas: Double): String {
-        var tekst1 = ""
+    private fun przeliczeniaCzas(czas: Double): SpannableStringBuilder {
+        var tekst1: SpannableStringBuilder
         if (czas < 60) {
             var czasFormat = String.format("%.2f", czas)
-            tekst1 = "Zyskujesz $czasFormat minut życia"
+            //tekst1 = "Zyskujesz $czasFormat minut życia"
+            tekst1 = (SpannableStringBuilder()
+                .append("Zyskujesz dla życia \n")
+                .color(Color.rgb(255, 0, 0)) { append("$czasFormat minut") })
         } else if (czas >= 60 && czas <= 59940) { //odpowiednik 999 godz
             var czasGodz = czas / 60
             var czasFormat1 = String.format("%.2f", czasGodz)
-            tekst1 = "Zyskujesz $czasFormat1 godzin życia"
+            //tekst1 = "Zyskujesz $czasFormat1 godzin życia"
+            tekst1 = (SpannableStringBuilder()
+                .append("Zyskujesz dla życia \n")
+                .color(Color.rgb(255, 0, 0)) { append("$czasFormat1 godzin") })
         } else {
             var czasDni = (czas / 24) / 60
             var czasFormat2 = String.format("%.2f", czasDni)
-            tekst1 = "Zyskujesz $czasFormat2 dni życia"
+            //tekst1 = "Zyskujesz $czasFormat2 dni życia"
+            tekst1 = (SpannableStringBuilder()
+                .append("Zyskujesz dla życia \n")
+                .color(Color.rgb(255, 0, 0)) { append("$czasFormat2 dni") })
         }
         return tekst1
     }
@@ -247,7 +281,5 @@ class Zdrowie : AppCompatActivity() {
         val intentA = Intent(this, ZdrowieWykres::class.java)
         startActivity(intentA)
     }
-
-
 
 }

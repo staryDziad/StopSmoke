@@ -21,7 +21,6 @@ import java.util.*
 import java.util.concurrent.TimeUnit
 import kotlin.collections.ArrayList
 
-
 class ZdrowieWykres : AppCompatActivity() {
     private val mFireStore = FirebaseFirestore.getInstance()
 
@@ -29,20 +28,17 @@ class ZdrowieWykres : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.wykresiki) //tu sie zmienia zeby byl dobry layout
 
-
         val lineChart = findViewById<LineChart>(R.id.lineChart)
 
-        getUserInfo {user ->
-
+        getUserInfo { user ->
             val dane = user.wykresWagi
             if (dane != null) {
                 drawChart(lineChart, dane)
             }
         }
-
     }
 
-    fun drawChart(lineChart: LineChart, daneWykresu: Map<String, Double>?){
+    fun drawChart(lineChart: LineChart, daneWykresu: Map<String, Double>?) {
 
         val entries = ArrayList<Entry>()
 
@@ -66,8 +62,8 @@ class ZdrowieWykres : AppCompatActivity() {
         vl.circleRadius = 7f
         vl.circleHoleRadius = 5f
         vl.lineWidth = 3f
-        vl.color =  Color.rgb(128,128,128)
-        vl.setCircleColor(Color.rgb(128,128,128))
+        vl.color = Color.rgb(128, 128, 128)
+        vl.setCircleColor(Color.rgb(128, 128, 128))
 
         //rotacja podpisow (w stopniach) - 0 to beda poziomo
         lineChart.xAxis.labelRotationAngle = 90f
@@ -104,13 +100,10 @@ class ZdrowieWykres : AppCompatActivity() {
 
         // jakby coś nie grało to spróbuj zakomentować tą linijkę
         //xaxis.mAxisMaximum = entries.get(entries.size-1).x + 0.01f
-
-
     }
 
     // POBIERANIE DANYCH - FUNKCJE SKOPIOWANE Z FIRESTORECLASS Z MODYFIKACJA - DODANIE
     // CALLBACKA W GETUSERINFO - OPERACJE ASYNCHRONICZNE
-
 
     fun getCurrentUserID(): String {
         val currentUser = FirebaseAuth.getInstance().currentUser
@@ -121,7 +114,7 @@ class ZdrowieWykres : AppCompatActivity() {
         return currentUserID
     }
 
-    fun getUserInfo(callback:(User) -> Unit) {
+    fun getUserInfo(callback: (User) -> Unit) {
 
         mFireStore.collection(Constant.USERS)
             .document(getCurrentUserID())
@@ -133,7 +126,6 @@ class ZdrowieWykres : AppCompatActivity() {
 
                 callback.invoke(user)
             }
-
     }
 
 }

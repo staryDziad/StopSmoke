@@ -51,32 +51,30 @@ class Zerowanie : AppCompatActivity() {
         var tmpStamp: Timestamp? = null
         tmpStamp = Timestamp.now()
 
-       btZeruj?.setOnClickListener {
-                updateData(tmpStamp!!)
-                finish()
-                openActivityMain()
-                tostZerowanie()
+        btZeruj?.setOnClickListener {
+            updateData(tmpStamp!!)
+            finish()
+            openActivityMain()
+            tostZerowanie()
         }
 
-        imHelp2?.setOnClickListener(object : View.OnClickListener {
-            override fun onClick(v: View) {
-                val mDialogView = LayoutInflater.from(this@Zerowanie)
-                    .inflate(R.layout.zeruj_popup, null)
-                val mBuilder = AlertDialog.Builder(this@Zerowanie)
-                    .setView(mDialogView)
-                    .setTitle("Zerowanie osiągnięć")
+        imHelp2?.setOnClickListener {
+            val mDialogView = LayoutInflater.from(this@Zerowanie)
+                .inflate(R.layout.zeruj_popup, null)
+            val mBuilder = AlertDialog.Builder(this@Zerowanie)
+                .setView(mDialogView)
+                .setTitle("Zerowanie osiągnięć")
 
-                val mAlertDialog = mBuilder.show()
-                val btZamknij = mDialogView.findViewById<Button>(R.id.btZamknijPop)
+            val mAlertDialog = mBuilder.show()
+            val btZamknij = mDialogView.findViewById<Button>(R.id.btZamknijPop)
 
-                btZamknij.setOnClickListener {
-                    mAlertDialog.dismiss()
-                }
+            btZamknij.setOnClickListener {
+                mAlertDialog.dismiss()
             }
-        })
-
+        }
 
     }
+
     private fun updateData(timestamp: Timestamp) {
         if (timestamp != null) {
             FireStoreClass().updateData(this, timestamp)
@@ -84,6 +82,7 @@ class Zerowanie : AppCompatActivity() {
             FireStoreClass().updateData(this, Timestamp(0, 0))
         }
     }
+
     private fun openActivityMain() {
         val intent = Intent(this, MainActivity::class.java)
         startActivity(intent)
@@ -92,12 +91,10 @@ class Zerowanie : AppCompatActivity() {
     private fun tostZerowanie() {
         Toast.makeText(
             this,
-            "Data ostatniego papierosa wyzerowana",
+            "Data ostatniego papierosa została wyzerowana",
             Toast.LENGTH_LONG
         )
             .show()
     }
-
-
 
 }
